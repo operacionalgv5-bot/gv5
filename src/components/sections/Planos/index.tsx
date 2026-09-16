@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { animate, stagger } from "animejs";
+import { useState } from "react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
 
 interface DadosPlano {
@@ -48,68 +48,20 @@ const DADOS_PLANOS: Record<string, DadosPlano> = {
 };
 
 export default function Planos() {
-  const secaoRef = useRef<HTMLDivElement>(null);
-  const textosRef = useRef<HTMLDivElement>(null);
-  const painelRef = useRef<HTMLDivElement>(null);
-  const metricasRef = useRef<HTMLDivElement>(null);
+  const gradeRef = useScrollAnimation<HTMLDivElement>({
+    distanciaY: 40,
+    atrasoStagger: 160,
+    duracao: 1450,
+  });
 
   const [abaSelecionada, setAbaSelecionada] = useState<string>("trafego");
-
-  useEffect(() => {
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (entrada.isIntersecting) {
-            if (textosRef.current?.children) {
-              animate(textosRef.current.children, {
-                opacity: [0, 1],
-                translateY: [24, 0],
-                delay: stagger(100),
-                duration: 800,
-                ease: "outQuad",
-              });
-            }
-
-            if (painelRef.current) {
-              animate(painelRef.current, {
-                opacity: [0, 1],
-                translateY: [28, 0],
-                duration: 900,
-                delay: 200,
-                ease: "outQuad",
-              });
-            }
-
-            observador.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    if (secaoRef.current) observador.observe(secaoRef.current);
-    return () => observador.disconnect();
-  }, []);
-
-  const trocarPlano = (id: string) => {
-    setAbaSelecionada(id);
-    if (metricasRef.current) {
-      animate(metricasRef.current, {
-        opacity: [0.3, 1],
-        scale: [0.97, 1],
-        duration: 350,
-        ease: "outQuad",
-      });
-    }
-  };
-
   const dadosAtuais = DADOS_PLANOS[abaSelecionada];
 
   return (
-    <section className={styles.secaoPlanos} ref={secaoRef}>
+    <section className={styles.secaoPlanos}>
       <div className="container">
-        <div className={styles.gradePrincipal}>
-          <div className={styles.colunaTextos} ref={textosRef}>
+        <div className={styles.gradePrincipal} ref={gradeRef}>
+          <div className={styles.colunaTextos}>
             <div className={styles.etiquetaSecao}>Planos Personalizados</div>
             <h2 className={styles.tituloSecao}>
               Nós te ajudamos a escolher a solução certa para a fase que sua empresa vive hoje!
@@ -119,14 +71,14 @@ export default function Planos() {
             </p>
           </div>
 
-          <div className={styles.painelGrafico} ref={painelRef}>
+          <div className={styles.painelGrafico}>
             <div className={styles.cabecalhoAbas}>
               {Object.values(DADOS_PLANOS).map((plano) => (
                 <button
                   key={plano.id}
                   type="button"
                   className={`${styles.botaoAbaPlano} ${abaSelecionada === plano.id ? styles.abaPlanoAtiva : ""}`}
-                  onClick={() => trocarPlano(plano.id)}
+                  onClick={() => setAbaSelecionada(plano.id)}
                 >
                   {plano.titulo}
                 </button>
@@ -152,7 +104,7 @@ export default function Planos() {
               </svg>
             </div>
 
-            <div className={styles.gradeMetricas} ref={metricasRef}>
+            <div className={styles.gradeMetricas}>
               <div className={styles.cardMetrica}>
                 <div className={styles.valorMetrica}>{dadosAtuais.roas}</div>
                 <div className={styles.rotuloMetrica}>ROAS Médio</div>

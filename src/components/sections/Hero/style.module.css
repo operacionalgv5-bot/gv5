@@ -9,13 +9,13 @@
 .gradeConteudo {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .colunaTexto {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   z-index: 3;
 }
 
@@ -25,18 +25,18 @@
 }
 
 .iconeLogo {
-  width: 44px;
+  width: 36px;
   height: auto;
   object-fit: contain;
 }
 
 .tituloAutoridade {
-  font-size: clamp(1.65rem, 6.8vw, 3.2rem);
+  font-size: clamp(1.35rem, 5.6vw, 3.2rem);
   font-weight: 900;
-  line-height: 1.15;
+  line-height: 1.16;
   text-transform: uppercase;
   color: var(--white);
-  letter-spacing: -0.4px;
+  letter-spacing: -0.3px;
 }
 
 .destaqueVermelho {
@@ -45,28 +45,28 @@
 }
 
 .subtitulo {
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   color: var(--gray-light);
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 .botaoAcao {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   background-color: var(--red);
   color: var(--white);
-  padding: 14px 20px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 6px;
   font-weight: 800;
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 0.88rem;
-  letter-spacing: 0.5px;
+  font-size: 0.8rem;
+  letter-spacing: 0.4px;
   width: 100%;
-  min-height: 48px;
-  box-shadow: 0 8px 24px rgba(212, 32, 32, 0.35);
+  min-height: 44px;
+  box-shadow: 0 6px 18px rgba(212, 32, 32, 0.35);
 }
 
 .colunaImagem {
@@ -74,7 +74,7 @@
   justify-content: center;
   align-items: flex-end;
   position: relative;
-  margin-top: 6px;
+  margin-top: 4px;
   width: 100%;
 }
 
@@ -90,7 +90,7 @@
 
 .imagemHero {
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
   height: auto;
   object-fit: cover;
   display: block;
@@ -98,20 +98,20 @@
 
 .areaFaixasCruzadas {
   position: relative;
-  height: 70px;
-  margin-top: 20px;
+  height: 58px;
+  margin-top: 14px;
   overflow: hidden;
   width: 100%;
 }
 
 .faixaBranca {
   position: absolute;
-  top: 20px;
+  top: 16px;
   left: -8%;
   width: 116%;
   background-color: var(--white);
   color: var(--black);
-  padding: 8px 0;
+  padding: 6px 0;
   transform: rotate(-1.5deg);
   overflow: hidden;
   white-space: nowrap;
@@ -120,12 +120,12 @@
 
 .faixaVermelha {
   position: absolute;
-  top: 8px;
+  top: 6px;
   left: -8%;
   width: 116%;
   background: linear-gradient(90deg, #b01818, #d42020, #b01818);
   color: var(--white);
-  padding: 9px 0;
+  padding: 7px 0;
   transform: rotate(1.8deg);
   overflow: hidden;
   white-space: nowrap;
@@ -134,35 +134,29 @@
 
 .trilhoMetricas {
   display: flex;
-  gap: 24px;
+  gap: 18px;
   animation: rolarFaixa 20s linear infinite;
 }
 
 .itemMetrica {
   font-weight: 900;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.5px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
-.separadorPontoVermelho {
+.separadorPontoVermelho, .separadorPontoPreto {
   display: inline-block;
   width: 4px;
   height: 4px;
-  background-color: var(--white);
   border-radius: 50%;
 }
 
-.separadorPontoPreto {
-  display: inline-block;
-  width: 4px;
-  height: 4px;
-  background-color: var(--black);
-  border-radius: 50%;
-}
+.separadorPontoVermelho { background-color: var(--white); }
+.separadorPontoPreto { background-color: var(--black); }
 
 @keyframes rolarFaixa {
   0% { transform: translateX(0); }
@@ -176,9 +170,24 @@
     gap: 20px;
     align-items: center;
   }
+  .colunaTexto {
+    gap: 20px;
+  }
+  .iconeLogo {
+    width: 50px;
+  }
+  .tituloAutoridade {
+    font-size: clamp(2rem, 4.4vw, 3.4rem);
+  }
+  .subtitulo {
+    font-size: clamp(0.98rem, 1.6vw, 1.15rem);
+    line-height: 1.65;
+  }
   .botaoAcao {
     width: auto;
     align-self: flex-start;
+    padding: 16px 28px;
+    font-size: 0.92rem;
   }
   .imagemHero {
     max-width: 740px;
@@ -186,12 +195,15 @@
   }
   .areaFaixasCruzadas {
     height: 100px;
+    margin-top: 35px;
   }
   .faixaBranca {
     top: 36px;
+    padding: 10px 0;
   }
   .faixaVermelha {
     top: 14px;
+    padding: 12px 0;
   }
   .itemMetrica {
     font-size: 0.82rem;

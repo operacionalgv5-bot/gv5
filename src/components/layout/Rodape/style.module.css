@@ -1,7 +1,7 @@
 .rodape {
   background: transparent;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 40px 0 24px;
+  padding: 34px 0 20px;
   position: relative;
   z-index: 2;
   overflow-x: clip;
@@ -10,36 +10,36 @@
 .gradePrincipal {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 22px 14px;
-  margin-bottom: 28px;
+  gap: 18px 10px;
+  margin-bottom: 22px;
 }
 
 .colunaInstitucional {
   grid-column: span 2;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .logoRodape {
-  width: 85px;
+  width: 78px;
   height: auto;
   object-fit: contain;
 }
 
 .descricaoInstitucional {
   color: var(--gray-light);
-  font-size: 0.84rem;
-  line-height: 1.45;
+  font-size: 0.78rem;
+  line-height: 1.4;
 }
 
 .iconeInstagram {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
   background-color: rgba(18, 33, 56, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--white);
@@ -49,12 +49,12 @@
 .colunaLinks {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 
 .tituloColuna {
   color: var(--white);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 800;
   margin-bottom: 2px;
 }
@@ -62,7 +62,7 @@
 .linkItem {
   color: var(--gray);
   text-decoration: none;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   padding: 2px 0;
 }
 
@@ -70,56 +70,56 @@
   grid-column: span 2;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .textoContato {
   color: var(--gray-light);
-  font-size: 0.84rem;
-  line-height: 1.45;
+  font-size: 0.78rem;
+  line-height: 1.4;
 }
 
 .linkWhatsapp {
   color: var(--white);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   font-weight: 800;
   border-bottom: 2px solid var(--red);
   padding-bottom: 2px;
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .faixaInferior {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 16px;
+  padding-top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
 }
 
 .selosParceiros {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .badgeSelo {
   background-color: var(--white);
   color: var(--black);
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 0.68rem;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 0.65rem;
   font-weight: 800;
 }
 
 .textoCopyright {
   color: var(--gray);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .cnpjDestaque {
@@ -129,10 +129,10 @@
 
 .botaoWhatsappFlutuante {
   position: fixed;
-  bottom: 16px;
-  right: 12px;
-  width: 50px;
-  height: 50px;
+  bottom: 14px;
+  right: 10px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: linear-gradient(135deg, #2fe675, #25d366);
   color: var(--white);
@@ -140,7 +140,7 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+  box-shadow: 0 0 16px rgba(37, 211, 102, 0.6);
   z-index: 999;
 }
 
@@ -155,21 +155,59 @@
   }
   .colunaInstitucional {
     grid-column: span 1;
+    gap: 14px;
+  }
+  .logoRodape {
+    width: 90px;
+  }
+  .descricaoInstitucional {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .iconeInstagram {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+  }
+  .colunaLinks {
+    gap: 10px;
+  }
+  .tituloColuna {
+    font-size: 0.95rem;
+  }
+  .linkItem {
+    font-size: 0.88rem;
   }
   .colunaContato {
     grid-column: span 1;
+    gap: 12px;
+  }
+  .textoContato {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .linkWhatsapp {
+    font-size: 0.95rem;
   }
   .faixaInferior {
     flex-direction: row;
     justify-content: space-between;
+    padding-top: 24px;
+  }
+  .badgeSelo {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.72rem;
   }
   .textoCopyright {
     text-align: right;
+    font-size: 0.75rem;
   }
   .botaoWhatsappFlutuante {
     bottom: 24px;
     right: 20px;
     width: 58px;
     height: 58px;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 }

@@ -18,7 +18,7 @@
   --gray-light: #b0c4d8;
   --black: #050a12;
 
-  --espacamento-secao: clamp(54px, 7vw, 110px);
+  --espacamento-secao: clamp(42px, 6vw, 100px);
   --fonte-principal: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -38,12 +38,12 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Regra Mandatória: exatos 5px das bordas da tela no celular */
+/* Regra Mandatória: exatos 7px das bordas no celular */
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 5px;
+  padding: 0 7px;
 }
 
 @media (min-width: 768px) {

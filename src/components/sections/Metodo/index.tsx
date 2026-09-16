@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { animate, stagger } from "animejs";
+import { useState } from "react";
 import Image from "next/image";
 import { 
   Radio, 
@@ -10,6 +9,7 @@ import {
   Send,
   ArrowRight
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
 
 interface EtapaInfo {
@@ -53,148 +53,113 @@ const ETAPAS: EtapaInfo[] = [
 ];
 
 export default function Metodo() {
-  const secaoRef = useRef<HTMLDivElement>(null);
-  const cabecalhoRef = useRef<HTMLDivElement>(null);
-  const caixaRef = useRef<HTMLDivElement>(null);
+  const containerRef = useScrollAnimation<HTMLDivElement>({
+    distanciaY: 38,
+    atrasoStagger: 150,
+    duracao: 1400,
+  });
+
   const [etapaAtiva, setEtapaAtiva] = useState<string>("aquisicao");
-
-  useEffect(() => {
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (entrada.isIntersecting) {
-            if (cabecalhoRef.current?.children) {
-              animate(cabecalhoRef.current.children, {
-                opacity: [0, 1],
-                translateY: [24, 0],
-                delay: stagger(100),
-                duration: 800,
-                ease: "outQuad",
-              });
-            }
-            observador.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    if (secaoRef.current) observador.observe(secaoRef.current);
-    return () => observador.disconnect();
-  }, []);
-
-  const mudarEtapa = (id: string) => {
-    setEtapaAtiva(id);
-    if (caixaRef.current) {
-      animate(caixaRef.current, {
-        opacity: [0.3, 1],
-        translateY: [8, 0],
-        duration: 350,
-        ease: "outQuad",
-      });
-    }
-  };
 
   const etapaSelecionada = ETAPAS.find((e) => e.id === etapaAtiva) || ETAPAS[1];
 
   return (
-    <section className={styles.secaoMetodo} id="metodo" ref={secaoRef}>
+    <section className={styles.secaoMetodo} id="metodo">
       <div className="container">
-        <div className={styles.cabecalhoSecao} ref={cabecalhoRef}>
-          <div className={styles.etiquetaSecao}>O Método GV5</div>
-          <h2 className={styles.tituloSecao}>
-            EXISTE UM <span>MÉTODO COMPROVADO</span> PARA QUE SUA EMPRESA{" "}
-            <span>NUNCA PARE</span> DE CRESCER
-          </h2>
-          <p className={styles.subtituloSecao}>
-            Se você seguir, irá manter seu negócio <strong>gerando resultados todos os dias</strong>.
-          </p>
-        </div>
-
-        {/* Diagrama Interativo Conectado às Etapas */}
-        <div className={styles.diagramaContainer}>
-          <div className={styles.colunaLinhasEsquerda}>
-            <div 
-              className={`${styles.itemLinha} ${etapaAtiva === "engajamento" ? styles.ativo : ""}`}
-              onClick={() => mudarEtapa("engajamento")}
-            >
-              <span className={styles.textoEtapa}>Engajamento</span>
-              <span className={styles.tracoConexao}></span>
-              <span className={styles.pontoBolinha}></span>
-            </div>
-            <div 
-              className={`${styles.itemLinha} ${etapaAtiva === "ativacao" ? styles.ativo : ""}`}
-              onClick={() => mudarEtapa("ativacao")}
-            >
-              <span className={styles.textoEtapa}>Ativação</span>
-              <span className={styles.tracoConexao}></span>
-              <span className={styles.pontoBolinha}></span>
-            </div>
+        <div ref={containerRef}>
+          <div className={styles.cabecalhoSecao}>
+            <div className={styles.etiquetaSecao}>O Método GV5</div>
+            <h2 className={styles.tituloSecao}>
+              EXISTE UM <span>MÉTODO COMPROVADO</span> PARA QUE SUA EMPRESA{" "}
+              <span>NUNCA PARE</span> DE CRESCER
+            </h2>
+            <p className={styles.subtituloSecao}>
+              Se você seguir, irá manter seu negócio <strong>gerando resultados todos os dias</strong>.
+            </p>
           </div>
 
-          <div className={styles.centroLogoGlow}>
-            <Image
-              src="/logo.png"
-              alt="GV5 Logo"
-              width={140}
-              height={100}
-              className={styles.imagemLogoCentro}
-            />
-          </div>
-
-          <div className={styles.colunaLinhasDireita}>
-            <div 
-              className={`${styles.itemLinha} ${etapaAtiva === "retencao" ? styles.ativo : ""}`}
-              onClick={() => mudarEtapa("retencao")}
-            >
-              <span className={styles.pontoBolinha}></span>
-              <span className={styles.tracoConexao}></span>
-              <span className={styles.textoEtapa}>Retenção</span>
-            </div>
-            <div 
-              className={`${styles.itemLinha} ${etapaAtiva === "aquisicao" ? styles.ativo : ""}`}
-              onClick={() => mudarEtapa("aquisicao")}
-            >
-              <span className={styles.pontoBolinha}></span>
-              <span className={styles.tracoConexao}></span>
-              <span className={styles.textoEtapa}>Aquisição</span>
-            </div>
-            <div 
-              className={`${styles.itemLinha} ${etapaAtiva === "monetizacao" ? styles.ativo : ""}`}
-              onClick={() => mudarEtapa("monetizacao")}
-            >
-              <span className={styles.pontoBolinha}></span>
-              <span className={styles.tracoConexao}></span>
-              <span className={styles.textoEtapa}>Monetização</span>
-            </div>
-          </div>
-        </div>
-
-        {/* 5 Botões Pílula que acionam o diagrama */}
-        <div className={styles.gradePills}>
-          {ETAPAS.map((etapa) => {
-            const Icone = etapa.icone;
-            const ativa = etapaAtiva === etapa.id;
-            return (
-              <button 
-                key={etapa.id}
-                type="button" 
-                className={`${styles.botaoPill} ${ativa ? styles.pillAtiva : ""}`}
-                onClick={() => mudarEtapa(etapa.id)}
+          <div className={styles.diagramaContainer}>
+            <div className={styles.colunaLinhasEsquerda}>
+              <div 
+                className={`${styles.itemLinha} ${etapaAtiva === "engajamento" ? styles.ativo : ""}`}
+                onClick={() => setEtapaAtiva("engajamento")}
               >
-                <Icone size={15} />
-                <span>{etapa.rotulo}</span>
-              </button>
-            );
-          })}
-        </div>
+                <span className={styles.textoEtapa}>Engajamento</span>
+                <span className={styles.tracoConexao}></span>
+                <span className={styles.pontoBolinha}></span>
+              </div>
+              <div 
+                className={`${styles.itemLinha} ${etapaAtiva === "ativacao" ? styles.ativo : ""}`}
+                onClick={() => setEtapaAtiva("ativacao")}
+              >
+                <span className={styles.textoEtapa}>Ativação</span>
+                <span className={styles.tracoConexao}></span>
+                <span className={styles.pontoBolinha}></span>
+              </div>
+            </div>
 
-        {/* Card Dinâmico que muda com as opções */}
-        <div className={styles.caixaDescricao} ref={caixaRef}>
-          <span className={styles.iconeSeta}>
-            <ArrowRight size={18} />
-          </span>
-          <p className={styles.textoDescricaoAba}>{etapaSelecionada.descricao}</p>
+            <div className={styles.centroLogoGlow}>
+              <Image
+                src="/logo.png"
+                alt="GV5 Logo"
+                width={140}
+                height={100}
+                className={styles.imagemLogoCentro}
+              />
+            </div>
+
+            <div className={styles.colunaLinhasDireita}>
+              <div 
+                className={`${styles.itemLinha} ${etapaAtiva === "retencao" ? styles.ativo : ""}`}
+                onClick={() => setEtapaAtiva("retencao")}
+              >
+                <span className={styles.pontoBolinha}></span>
+                <span className={styles.tracoConexao}></span>
+                <span className={styles.textoEtapa}>Retenção</span>
+              </div>
+              <div 
+                className={`${styles.itemLinha} ${etapaAtiva === "aquisicao" ? styles.ativo : ""}`}
+                onClick={() => setEtapaAtiva("aquisicao")}
+              >
+                <span className={styles.pontoBolinha}></span>
+                <span className={styles.tracoConexao}></span>
+                <span className={styles.textoEtapa}>Aquisição</span>
+              </div>
+              <div 
+                className={`${styles.itemLinha} ${etapaAtiva === "monetizacao" ? styles.ativo : ""}`}
+                onClick={() => setEtapaAtiva("monetizacao")}
+              >
+                <span className={styles.pontoBolinha}></span>
+                <span className={styles.tracoConexao}></span>
+                <span className={styles.textoEtapa}>Monetização</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.gradePills}>
+            {ETAPAS.map((etapa) => {
+              const Icone = etapa.icone;
+              const ativa = etapaAtiva === etapa.id;
+              return (
+                <button 
+                  key={etapa.id}
+                  type="button" 
+                  className={`${styles.botaoPill} ${ativa ? styles.pillAtiva : ""}`}
+                  onClick={() => setEtapaAtiva(etapa.id)}
+                >
+                  <Icone size={15} />
+                  <span>{etapa.rotulo}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className={styles.caixaDescricao}>
+            <span className={styles.iconeSeta}>
+              <ArrowRight size={18} />
+            </span>
+            <p className={styles.textoDescricaoAba}>{etapaSelecionada.descricao}</p>
+          </div>
         </div>
       </div>
     </section>

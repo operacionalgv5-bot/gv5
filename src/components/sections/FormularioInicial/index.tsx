@@ -1,16 +1,17 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { animate, stagger } from "animejs";
+import { useState } from "react";
 import { Check, ArrowUpRight, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
 
 export default function FormularioInicial() {
-  const secaoRef = useRef<HTMLDivElement>(null);
-  const conteudoRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
+  const containerRef = useScrollAnimation<HTMLDivElement>({
+    distanciaY: 40,
+    atrasoStagger: 150,
+    duracao: 1400,
+  });
 
-  // Estados do formulário
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [empresa, setEmpresa] = useState("");
@@ -21,49 +22,12 @@ export default function FormularioInicial() {
   const [sucesso, setSucesso] = useState(false);
   const [mensagemErro, setMensagemErro] = useState("");
 
-  useEffect(() => {
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (entrada.isIntersecting) {
-            if (conteudoRef.current?.children) {
-              animate(conteudoRef.current.children, {
-                opacity: [0, 1],
-                translateY: [24, 0],
-                delay: stagger(100),
-                duration: 800,
-                ease: "outQuad",
-              });
-            }
-
-            if (formRef.current) {
-              animate(formRef.current, {
-                opacity: [0, 1],
-                translateY: [32, 0],
-                duration: 900,
-                delay: 200,
-                ease: "outQuad",
-              });
-            }
-
-            observador.disconnect();
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-
-    if (secaoRef.current) observador.observe(secaoRef.current);
-    return () => observador.disconnect();
-  }, []);
-
   const lidarComEnvio = async (e: React.FormEvent) => {
     e.preventDefault();
     setEnviando(true);
     setMensagemErro("");
 
     try {
-      // Inserção direta na tabela 'leads' conforme schema oficial
       const { error } = await supabase.from("leads").insert([
         {
           name: nome.trim(),
@@ -74,9 +38,7 @@ export default function FormularioInicial() {
         },
       ]);
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
       setSucesso(true);
       setNome("");
@@ -85,18 +47,18 @@ export default function FormularioInicial() {
       setSegmento("");
       setFaturamento("");
     } catch (err: any) {
-      console.error("Erro ao salvar lead na tabela leads:", err);
-      setMensagemErro("Ocorreu um erro ao enviar. Tente novamente ou chame no WhatsApp.");
+      console.error("Erro ao salvar lead:", err);
+      setMensagemErro("Ocorreu um erro ao enviar. Tente novamente.");
     } finally {
       setEnviando(false);
     }
   };
 
   return (
-    <section className={styles.secao} id="inicio" ref={secaoRef}>
+    <section className={styles.secao} id="inicio">
       <div className="container">
-        <div className={styles.gradePrincipal}>
-          <div className={styles.colunaTextos} ref={conteudoRef}>
+        <div className={styles.gradePrincipal} ref={containerRef}>
+          <div className={styles.colunaTextos}>
             <h1 className={styles.tituloDestaque}>
               FAZEMOS O SEU RESTAURANTE VENDER{" "}
               <span className={styles.textoVermelho}>R$ 15 A CADA R$ 1 INVESTIDO</span>{" "}
@@ -122,13 +84,13 @@ export default function FormularioInicial() {
             </a>
           </div>
 
-          <div className={styles.colunaFormulario} ref={formRef}>
+          <div className={styles.colunaFormulario}>
             {sucesso ? (
               <div className={styles.caixaSucesso}>
                 <CheckCircle2 size={54} className={styles.iconeSucesso} />
                 <h3 className={styles.tituloSucesso}>Solicitação Recebida!</h3>
                 <p className={styles.textoSucesso}>
-                  Em instantes um assessor executivo da GV5 entrará em contato pelo seu WhatsApp para dar início ao diagnóstico.
+                  Em instantes um assessor executivo da GV5 entrará em contato pelo seu WhatsApp.
                 </p>
                 <button
                   type="button"

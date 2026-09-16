@@ -1,55 +1,20 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { animate, stagger } from "animejs";
 import Image from "next/image";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
 
 export default function QuemSomos() {
-  const secaoRef = useRef<HTMLDivElement>(null);
-  const imagemRef = useRef<HTMLDivElement>(null);
-  const textoRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (entrada.isIntersecting) {
-            if (imagemRef.current) {
-              animate(imagemRef.current, {
-                opacity: [0, 1],
-                scale: [0.94, 1],
-                translateY: [25, 0],
-                duration: 900,
-                ease: "outQuad",
-              });
-            }
-
-            if (textoRef.current?.children) {
-              animate(textoRef.current.children, {
-                opacity: [0, 1],
-                translateY: [24, 0],
-                delay: stagger(110),
-                duration: 850,
-                ease: "outQuad",
-              });
-            }
-
-            observador.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    if (secaoRef.current) observador.observe(secaoRef.current);
-    return () => observador.disconnect();
-  }, []);
+  const secaoRef = useScrollAnimation<HTMLDivElement>({
+    distanciaY: 42,
+    atrasoStagger: 170,
+    duracao: 1450,
+  });
 
   return (
-    <section className={styles.secaoQuemSomos} id="sobre" ref={secaoRef}>
+    <section className={styles.secaoQuemSomos} id="sobre">
       <div className="container">
-        <div className={styles.gradeConteudo}>
-          <div className={styles.colunaCartoes} ref={imagemRef}>
+        <div className={styles.gradeConteudo} ref={secaoRef}>
+          <div className={styles.colunaCartoes}>
             <Image
               src="/img-quem-somos.png"
               alt="Estratégia, Execução e Conversão"
@@ -59,7 +24,7 @@ export default function QuemSomos() {
             />
           </div>
 
-          <div className={styles.colunaTexto} ref={textoRef}>
+          <div className={styles.colunaTexto}>
             <div className={styles.etiqueta}>Quem Somos</div>
             <h2 className={styles.tituloPrincipal}>
               Líder em marketing digital e parceira do seu crescimento.

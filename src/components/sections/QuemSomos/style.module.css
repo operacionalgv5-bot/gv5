@@ -1,5 +1,5 @@
 .secaoQuemSomos {
-  padding: 45px 0;
+  padding: 38px 0;
   background: transparent;
   position: relative;
   z-index: 2;
@@ -9,7 +9,8 @@
 .gradeConteudo {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  align-items: center;
+  gap: 20px;
 }
 
 .colunaCartoes {
@@ -21,7 +22,7 @@
 
 .imagemComposta {
   width: 100%;
-  max-width: 320px;
+  max-width: 260px;
   height: auto;
   object-fit: contain;
 }
@@ -29,29 +30,33 @@
 .colunaTexto {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  max-width: 520px;
 }
 
 .etiqueta {
   color: var(--red);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
 }
 
 .tituloPrincipal {
-  font-size: clamp(1.45rem, 5.8vw, 2.6rem);
+  font-size: clamp(1.15rem, 4.8vw, 1.45rem);
   font-weight: 900;
   color: var(--white);
-  line-height: 1.18;
+  line-height: 1.25;
   text-transform: uppercase;
+  letter-spacing: -0.2px;
 }
 
 .paragrafo {
   color: var(--gray-light);
-  font-size: 0.88rem;
-  line-height: 1.5;
+  font-size: 0.8rem;
+  line-height: 1.55;
 }
 
 .destaque {
@@ -69,11 +74,18 @@
     gap: 56px;
     align-items: center;
   }
+  .colunaTexto {
+    align-items: flex-start;
+    text-align: left;
+    gap: 16px;
+    max-width: none;
+  }
   .imagemComposta {
     max-width: 440px;
   }
   .tituloPrincipal {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.18;
   }
   .paragrafo {
     font-size: 0.95rem;

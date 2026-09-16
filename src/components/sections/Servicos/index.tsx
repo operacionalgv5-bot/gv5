@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { animate } from "animejs";
 import Image from "next/image";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
 
 const BANNER_CARDS = [
@@ -14,39 +13,17 @@ const BANNER_CARDS = [
   "/cards/oque-fazemos-07.png",
 ];
 
-// Duplicação para loop contínuo perfeito sem cortes
 const CARDS_LOOP = [...BANNER_CARDS, ...BANNER_CARDS];
 
 export default function Servicos() {
-  const secaoRef = useRef<HTMLDivElement>(null);
-  const cabecalhoRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (entrada.isIntersecting) {
-            if (cabecalhoRef.current?.children) {
-              animate(cabecalhoRef.current.children, {
-                opacity: [0, 1],
-                translateY: [24, 0],
-                duration: 800,
-                ease: "outQuad",
-              });
-            }
-            observador.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    if (secaoRef.current) observador.observe(secaoRef.current);
-    return () => observador.disconnect();
-  }, []);
+  const cabecalhoRef = useScrollAnimation<HTMLDivElement>({
+    distanciaY: 32,
+    atrasoStagger: 130,
+    duracao: 1350,
+  });
 
   return (
-    <section className={styles.secaoServicos} id="servicos" ref={secaoRef}>
+    <section className={styles.secaoServicos} id="servicos">
       <div className="container">
         <div className={styles.cabecalhoSecao} ref={cabecalhoRef}>
           <div className={styles.etiquetaSecao}>O Que Fazemos?</div>

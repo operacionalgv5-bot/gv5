@@ -1,8 +1,7 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { animate, stagger } from "animejs";
 import Image from "next/image";
 import { TrendingUp } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
 
 const CASOS_BASE = [
@@ -44,8 +43,8 @@ const CASOS_BASE = [
   {
     nome: "Vivazhen",
     imagem: "/clientes/vivazhen.png",
-    investido: "R$ 5.890,00",
-    retornado: "R$ 100.420,00",
+    investido: "R$ 2.890,00",
+    retornado: "R$ 31.420,00",
     roi: "ROI 10.8x",
   },
 ];
@@ -53,36 +52,14 @@ const CASOS_BASE = [
 const CASOS_LOOP = [...CASOS_BASE, ...CASOS_BASE];
 
 export default function Clientes() {
-  const secaoRef = useRef<HTMLDivElement>(null);
-  const cabecalhoRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (entrada.isIntersecting) {
-            if (cabecalhoRef.current?.children) {
-              animate(cabecalhoRef.current.children, {
-                opacity: [0, 1],
-                translateY: [24, 0],
-                delay: stagger(100),
-                duration: 800,
-                ease: "outQuad",
-              });
-            }
-            observador.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    if (secaoRef.current) observador.observe(secaoRef.current);
-    return () => observador.disconnect();
-  }, []);
+  const cabecalhoRef = useScrollAnimation<HTMLDivElement>({
+    distanciaY: 30,
+    atrasoStagger: 140,
+    duracao: 1300,
+  });
 
   return (
-    <section className={styles.secaoClientes} id="clientes" ref={secaoRef}>
+    <section className={styles.secaoClientes} id="clientes">
       <div className="container">
         <div className={styles.cabecalhoSecao} ref={cabecalhoRef}>
           <div className={styles.etiquetaSecao}>Resultados Reais Auditados</div>

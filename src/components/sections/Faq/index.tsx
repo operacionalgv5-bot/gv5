@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { animate, stagger } from "animejs";
+import { useState } from "react";
 import { HelpCircle, ChevronDown } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
 
 interface ItemFaq {
@@ -29,44 +29,23 @@ const ITENS_FAQ: ItemFaq[] = [
 ];
 
 export default function Faq() {
-  const secaoRef = useRef<HTMLDivElement>(null);
-  const cabecalhoRef = useRef<HTMLDivElement>(null);
+  const gradeRef = useScrollAnimation<HTMLDivElement>({
+    distanciaY: 36,
+    atrasoStagger: 120,
+    duracao: 1350,
+  });
+
   const [itemAberto, setItemAberto] = useState<number | null>(0);
-
-  useEffect(() => {
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (entrada.isIntersecting) {
-            if (cabecalhoRef.current?.children) {
-              animate(cabecalhoRef.current.children, {
-                opacity: [0, 1],
-                translateY: [24, 0],
-                delay: stagger(100),
-                duration: 800,
-                ease: "outQuad",
-              });
-            }
-            observador.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    if (secaoRef.current) observador.observe(secaoRef.current);
-    return () => observador.disconnect();
-  }, []);
 
   const alternarItem = (indice: number) => {
     setItemAberto(itemAberto === indice ? null : indice);
   };
 
   return (
-    <section className={styles.secaoFaq} id="faq" ref={secaoRef}>
+    <section className={styles.secaoFaq} id="faq">
       <div className="container">
-        <div className={styles.gradeConteudo}>
-          <div className={styles.colunaTextos} ref={cabecalhoRef}>
+        <div className={styles.gradeConteudo} ref={gradeRef}>
+          <div className={styles.colunaTextos}>
             <div className={styles.etiquetaDestaque}>Transparência e Parceria</div>
             <h2 className={styles.tituloSecao}>
               Perguntas Frequentes
@@ -88,12 +67,12 @@ export default function Faq() {
                   >
                     <div className={styles.blocoIconeTexto}>
                       <span className={styles.iconePergunta}>
-                        <HelpCircle size={16} />
+                        <HelpCircle size={15} />
                       </span>
                       <span className={styles.textoPergunta}>{item.pergunta}</span>
                     </div>
                     <span className={`${styles.setaAcordeao} ${aberto ? styles.setaAberta : ""}`}>
-                      <ChevronDown size={18} />
+                      <ChevronDown size={17} />
                     </span>
                   </button>
                   {aberto && (

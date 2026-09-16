@@ -1,5 +1,5 @@
 .secaoTime {
-  padding: 45px 0;
+  padding: 38px 0;
   background: transparent;
   position: relative;
   z-index: 2;
@@ -9,43 +9,48 @@
 .gradeConteudo {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  gap: 18px;
 }
 
 .colunaTextos {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  max-width: 520px;
 }
 
 .etiquetaDestaque {
   color: var(--red);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 1.8px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
 .tituloPrincipal {
-  font-size: clamp(1.4rem, 5.6vw, 2.7rem);
+  font-size: clamp(1.18rem, 4.9vw, 1.48rem);
   font-weight: 900;
   color: var(--white);
-  line-height: 1.18;
+  line-height: 1.25;
   text-transform: uppercase;
+  letter-spacing: -0.2px;
 }
 
 .descricao {
   color: var(--gray-light);
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   line-height: 1.5;
 }
 
 .blocoAcao {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-  margin-top: 4px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
   width: 100%;
 }
 
@@ -53,31 +58,32 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   background-color: var(--white);
   color: var(--red);
-  padding: 14px 20px;
-  border-radius: 8px;
+  padding: 12px 18px;
+  border-radius: 6px;
   font-weight: 900;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
   text-decoration: none;
-  min-height: 48px;
+  min-height: 44px;
   width: 100%;
+  max-width: 320px;
 }
 
 .indicadorOnline {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
+  gap: 6px;
+  font-size: 0.76rem;
   color: #34d399;
   font-weight: 600;
 }
 
 .pontoVerde {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background-color: #34d399;
 }
@@ -89,11 +95,12 @@
 }
 
 .molduraImagem {
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
   width: 100%;
+  max-width: 420px;
 }
 
 .imagemEspecialista {
@@ -113,10 +120,30 @@
     gap: 56px;
     align-items: center;
   }
-  .botaoCta {
-    width: auto;
+  .colunaTextos {
+    align-items: flex-start;
+    text-align: left;
+    gap: 18px;
+    max-width: none;
   }
   .tituloPrincipal {
     font-size: clamp(1.8rem, 4.2vw, 2.8rem);
+    line-height: 1.15;
+  }
+  .descricao {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .blocoAcao {
+    align-items: flex-start;
+  }
+  .botaoCta {
+    width: auto;
+    padding: 16px 28px;
+    font-size: 0.95rem;
+    max-width: none;
+  }
+  .molduraImagem {
+    max-width: none;
   }
 }
