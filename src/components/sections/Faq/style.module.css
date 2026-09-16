@@ -1,0 +1,135 @@
+.secaoFaq {
+  padding: 50px 0 45px;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  overflow-x: clip;
+}
+
+.gradeConteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.colunaTextos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.etiquetaDestaque {
+  color: var(--red-light);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tituloSecao {
+  font-size: clamp(1.45rem, 5.8vw, 3rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.18;
+  text-transform: uppercase;
+}
+
+.descricaoSecao {
+  color: var(--gray-light);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.listaAcordeao {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.itemAcordeao {
+  background-color: rgba(18, 33, 56, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.botaoPergunta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  min-height: 48px;
+}
+
+.blocoIconeTexto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iconePergunta {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(212, 32, 32, 0.2);
+  color: var(--red-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.textoPergunta {
+  color: var(--white);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.setaAcordeao {
+  color: var(--gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.setaAberta {
+  transform: rotate(180deg);
+  color: var(--red-light);
+}
+
+.corpoResposta {
+  padding: 0 12px 14px 44px;
+  color: var(--gray-light);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 900px) {
+  .secaoFaq {
+    padding: var(--espacamento-secao) 0;
+  }
+  .gradeConteudo {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 48px;
+  }
+  .botaoPergunta {
+    padding: 18px 20px;
+  }
+  .textoPergunta {
+    font-size: 0.95rem;
+  }
+  .corpoResposta {
+    padding: 0 20px 20px 64px;
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,114 @@
+.envolturaFixa {
+  position: fixed;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 990;
+  pointer-events: none;
+  padding: 0 5px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.escondido {
+  transform: translateY(-130%);
+  opacity: 0;
+}
+
+.cabecalhoFlutuante {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 1160px;
+  background: rgba(10, 18, 30, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 8px 12px;
+  box-shadow: 
+    0 16px 36px -8px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(212, 32, 32, 0.12);
+}
+
+.conteudoInterno {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logoArea {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.imagemLogo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navegacaoDesktop {
+  display: none;
+  align-items: center;
+  gap: 24px;
+}
+
+.linkNavegacao {
+  color: var(--gray-light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.linkNavegacao:hover {
+  color: var(--white);
+}
+
+.areaAcao {
+  display: flex;
+  align-items: center;
+}
+
+.botaoFaleConosco {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #e52828, #b01818);
+  color: var(--white);
+  padding: 8px 14px;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  min-height: 38px;
+}
+
+@media (min-width: 768px) {
+  .envolturaFixa {
+    top: 18px;
+    padding: 0 20px;
+  }
+  .cabecalhoFlutuante {
+    padding: 12px 24px;
+  }
+  .imagemLogo {
+    height: 40px;
+  }
+  .navegacaoDesktop {
+    display: flex;
+  }
+  .botaoFaleConosco {
+    padding: 10px 22px;
+    font-size: 0.82rem;
+    min-height: 44px;
+  }
+}

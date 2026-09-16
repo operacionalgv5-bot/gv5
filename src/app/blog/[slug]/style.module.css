@@ -1,0 +1,234 @@
+.paginaArtigo {
+  min-height: 80vh;
+  padding: 100px 0 var(--espacamento-secao);
+  position: relative;
+  z-index: 2;
+  overflow-x: clip;
+}
+
+.botaoVoltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-light);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 30px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.botaoVoltar:hover {
+  color: var(--white);
+  transform: translateX(-3px);
+}
+
+.artigoCompleto {
+  max-width: 860px;
+  margin: 0 auto;
+  background: rgba(18, 33, 56, 0.6);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px 16px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+.cabecalhoArtigo {
+  margin-bottom: 28px;
+}
+
+.metaSuperior {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.itemData {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gray);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.categoriaBadge {
+  background: rgba(212, 32, 32, 0.2);
+  color: var(--white);
+  border: 1px solid rgba(212, 32, 32, 0.4);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.tituloPrincipal {
+  font-size: clamp(1.8rem, 5vw, 2.9rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.subtituloArtigo {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--gray-light);
+  line-height: 1.6;
+}
+
+.envolturaCapa {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.imagemCapa {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Estilização Completa e Segura para o Rich Text (HTML vindo do banco) */
+.conteudoRico {
+  color: #d1dce8;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 48px;
+  word-break: break-word;
+}
+
+.conteudoRico h1,
+.conteudoRico h2,
+.conteudoRico h3,
+.conteudoRico h4 {
+  color: var(--white);
+  font-weight: 800;
+  margin-top: 36px;
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.conteudoRico h2 {
+  font-size: 1.7rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.conteudoRico h3 {
+  font-size: 1.35rem;
+}
+
+.conteudoRico p {
+  margin-bottom: 20px;
+}
+
+.conteudoRico ul,
+.conteudoRico ol {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.conteudoRico li {
+  margin-bottom: 8px;
+}
+
+.conteudoRico a {
+  color: var(--red-light);
+  text-decoration: underline;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.conteudoRico a:hover {
+  color: var(--white);
+}
+
+.conteudoRico img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 24px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.conteudoRico blockquote {
+  border-left: 4px solid var(--red);
+  padding: 12px 20px;
+  background: rgba(212, 32, 32, 0.08);
+  border-radius: 0 8px 8px 0;
+  margin: 24px 0;
+  font-style: italic;
+  color: var(--white);
+}
+
+/* CTA de Conversão no Fim do Artigo */
+.caixaCtaConversao {
+  background: linear-gradient(135deg, rgba(28, 45, 74, 0.85), rgba(12, 22, 36, 0.95));
+  border: 1px solid var(--red);
+  border-radius: 16px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 15px 35px rgba(212, 32, 32, 0.2);
+}
+
+.tituloCta {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.descricaoCta {
+  color: var(--gray-light);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.botaoAcaoCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #e52828, #b01818);
+  color: var(--white);
+  padding: 16px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 20px rgba(212, 32, 32, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.botaoAcaoCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(212, 32, 32, 0.6);
+}
+
+@media (min-width: 768px) {
+  .artigoCompleto {
+    padding: 44px 38px;
+  }
+  .caixaCtaConversao {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 28px;
+  }
+  .textosCta {
+    max-width: 58%;
+  }
+}

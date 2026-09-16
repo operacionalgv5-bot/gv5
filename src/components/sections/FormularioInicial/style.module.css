@@ -1,0 +1,221 @@
+.secao {
+  padding: 68px 0 var(--espacamento-secao);
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  overflow-x: clip;
+}
+
+.gradePrincipal {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.colunaTextos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tituloDestaque {
+  font-size: clamp(1.65rem, 7.5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: -0.4px;
+}
+
+.textoVermelho {
+  color: var(--red);
+}
+
+.descricao {
+  font-size: 0.95rem;
+  color: var(--gray-light);
+  line-height: 1.55;
+}
+
+.listaBeneficios {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemBeneficio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.molduraIcone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--red);
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.botaoResultados {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(18, 33, 56, 0.6);
+  color: var(--white);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  min-height: 48px;
+  transition: all 0.25s ease;
+}
+
+.colunaFormulario {
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 14px;
+  padding: 20px 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.campoTexto, .campoSelecao {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d5dce6;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--black);
+  background-color: #fafbfc;
+  outline: none;
+  min-height: 48px;
+}
+
+.campoTexto:focus, .campoSelecao:focus {
+  border-color: var(--red);
+  background-color: var(--white);
+}
+
+.botaoSubmissao {
+  width: 100%;
+  background-color: #c91f1f;
+  color: var(--white);
+  padding: 16px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 900;
+  cursor: pointer;
+  min-height: 52px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s ease;
+}
+
+.botaoSubmissao:hover:not(:disabled) {
+  background-color: var(--red-dark);
+}
+
+.botaoSubmissao:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.spinnnerBotao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconeGirando {
+  animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+  100% { transform: rotate(360deg); }
+}
+
+.textoErro {
+  color: #dc2626;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.caixaSucesso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 16px;
+  gap: 14px;
+}
+
+.iconeSucesso {
+  color: #16a34a;
+}
+
+.tituloSucesso {
+  color: var(--black);
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.textoSucesso {
+  color: #4b5563;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.botaoNovoEnvio {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #374151;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+@media (min-width: 900px) {
+  .secao {
+    padding: calc(var(--espacamento-secao) + 20px) 0 var(--espacamento-secao);
+  }
+  .gradePrincipal {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .botaoResultados {
+    width: auto;
+    align-self: flex-start;
+  }
+  .colunaFormulario {
+    padding: 36px 30px;
+  }
+}

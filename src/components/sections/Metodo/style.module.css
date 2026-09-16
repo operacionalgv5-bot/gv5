@@ -1,0 +1,227 @@
+.secaoMetodo {
+  padding: var(--espacamento-secao) 0;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  overflow-x: clip;
+}
+
+.cabecalhoSecao {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.etiquetaSecao {
+  color: var(--red);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.tituloSecao {
+  font-size: clamp(1.65rem, 6.5vw, 3rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.18;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.tituloSecao span {
+  color: var(--white);
+}
+
+.subtituloSecao {
+  color: var(--gray-light);
+  font-size: 0.92rem;
+}
+
+.subtituloSecao strong {
+  color: var(--white);
+}
+
+/* Diagrama com Feixe Luminoso Central */
+.diagramaContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 760px;
+  margin: 20px auto 30px;
+  position: relative;
+}
+
+.centroLogoGlow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 35px rgba(212, 32, 32, 0.8));
+  z-index: 2;
+}
+
+.imagemLogoCentro {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+}
+
+.colunaLinhasEsquerda, .colunaLinhasDireita {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  z-index: 2;
+}
+
+.colunaLinhasEsquerda {
+  align-items: flex-end;
+}
+
+.colunaLinhasDireita {
+  align-items: flex-start;
+}
+
+.itemLinha {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.textoEtapa {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #8fa5bf;
+  transition: color 0.3s ease;
+}
+
+.tracoConexao {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.pontoBolinha {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #556a82;
+}
+
+.ativo .textoEtapa {
+  color: var(--white);
+  font-weight: 900;
+}
+
+.ativo .tracoConexao {
+  background-color: var(--red);
+}
+
+.ativo .pontoBolinha {
+  background-color: var(--red);
+  box-shadow: 0 0 14px 4px rgba(212, 32, 32, 0.95);
+  transform: scale(1.3);
+}
+
+/* 5 Botões Pílula - 2 por linha no celular com o 5º centralizado */
+.gradePills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.gradePills button:last-child {
+  grid-column: span 2;
+  justify-content: center;
+}
+
+.botaoPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(18, 33, 56, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 10px 14px;
+  color: var(--gray-light);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.pillAtiva {
+  border-color: var(--red) !important;
+  background: rgba(212, 32, 32, 0.25) !important;
+  color: var(--white) !important;
+}
+
+/* Caixa de Descrição Dinâmica */
+.caixaDescricao {
+  background: linear-gradient(135deg, rgba(20, 36, 60, 0.75), rgba(12, 22, 36, 0.85));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 32, 32, 0.35);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.iconeSeta {
+  color: var(--red-light);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.textoDescricaoAba {
+  color: var(--white);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .imagemLogoCentro {
+    width: 135px;
+  }
+  .colunaLinhasEsquerda, .colunaLinhasDireita {
+    gap: 26px;
+  }
+  .textoEtapa {
+    font-size: 0.95rem;
+  }
+  .tracoConexao {
+    width: 42px;
+  }
+  .pontoBolinha {
+    width: 10px;
+    height: 10px;
+  }
+  .gradePills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .gradePills button:last-child {
+    grid-column: auto;
+  }
+  .caixaDescricao {
+    padding: 20px 26px;
+    border-radius: 14px;
+    margin-top: 28px;
+  }
+  .textoDescricaoAba {
+    font-size: 0.96rem;
+  }
+}

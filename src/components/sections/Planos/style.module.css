@@ -1,0 +1,154 @@
+.secaoPlanos {
+  padding: 50px 0 45px;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  overflow-x: clip;
+}
+
+.gradePrincipal {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.colunaTextos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.etiquetaSecao {
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.tituloSecao {
+  font-size: clamp(1.4rem, 5.5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.18;
+  text-transform: uppercase;
+}
+
+.descricaoSecao {
+  color: var(--gray-light);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.destaqueBranco {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.painelGrafico {
+  background-color: rgba(18, 33, 56, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+.cabecalhoAbas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.botaoAbaPlano {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--gray);
+  padding: 10px 4px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  min-height: 42px;
+  cursor: pointer;
+}
+
+.abaPlanoAtiva {
+  background-color: rgba(212, 32, 32, 0.2);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+.areaCurva {
+  width: 100%;
+  height: 120px;
+  margin-bottom: 14px;
+}
+
+.svgCurva {
+  width: 100%;
+  height: 100%;
+}
+
+.linhaGrafico {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 3;
+}
+
+.gradienteArea {
+  fill: url(#degradeCurva);
+}
+
+.gradeMetricas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.cardMetrica {
+  background-color: rgba(25, 45, 74, 0.8);
+  padding: 10px 4px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.valorMetrica {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+
+.rotuloMetrica {
+  font-size: 0.64rem;
+  color: var(--gray-light);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+@media (min-width: 900px) {
+  .secaoPlanos {
+    padding: var(--espacamento-secao) 0;
+  }
+  .gradePrincipal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .painelGrafico {
+    padding: 30px;
+    border-radius: 16px;
+  }
+  .cabecalhoAbas {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .areaCurva {
+    height: 140px;
+  }
+  .valorMetrica {
+    font-size: 1.4rem;
+  }
+}

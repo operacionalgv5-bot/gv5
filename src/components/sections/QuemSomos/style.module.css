@@ -1,0 +1,82 @@
+.secaoQuemSomos {
+  padding: 45px 0;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  overflow-x: clip;
+}
+
+.gradeConteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.colunaCartoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.imagemComposta {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
+}
+
+.colunaTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.etiqueta {
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tituloPrincipal {
+  font-size: clamp(1.45rem, 5.8vw, 2.6rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.18;
+  text-transform: uppercase;
+}
+
+.paragrafo {
+  color: var(--gray-light);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.destaque {
+  color: var(--white);
+  font-weight: 700;
+}
+
+@media (min-width: 900px) {
+  .secaoQuemSomos {
+    padding: var(--espacamento-secao) 0;
+  }
+  .gradeConteudo {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .imagemComposta {
+    max-width: 440px;
+  }
+  .tituloPrincipal {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+  }
+  .paragrafo {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}

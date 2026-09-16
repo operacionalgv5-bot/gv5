@@ -1,0 +1,122 @@
+.secaoTime {
+  padding: 45px 0;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  overflow-x: clip;
+}
+
+.gradeConteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.colunaTextos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.etiquetaDestaque {
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.tituloPrincipal {
+  font-size: clamp(1.4rem, 5.6vw, 2.7rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.18;
+  text-transform: uppercase;
+}
+
+.descricao {
+  color: var(--gray-light);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.blocoAcao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 4px;
+  width: 100%;
+}
+
+.botaoCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--white);
+  color: var(--red);
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  min-height: 48px;
+  width: 100%;
+}
+
+.indicadorOnline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #34d399;
+  font-weight: 600;
+}
+
+.pontoVerde {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #34d399;
+}
+
+.colunaImagem {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.molduraImagem {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
+.imagemEspecialista {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .secaoTime {
+    padding: var(--espacamento-secao) 0;
+  }
+  .gradeConteudo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .botaoCta {
+    width: auto;
+  }
+  .tituloPrincipal {
+    font-size: clamp(1.8rem, 4.2vw, 2.8rem);
+  }
+}

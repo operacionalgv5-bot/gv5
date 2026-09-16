@@ -1,0 +1,175 @@
+.rodape {
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 0 24px;
+  position: relative;
+  z-index: 2;
+  overflow-x: clip;
+}
+
+.gradePrincipal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 14px;
+  margin-bottom: 28px;
+}
+
+.colunaInstitucional {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logoRodape {
+  width: 85px;
+  height: auto;
+  object-fit: contain;
+}
+
+.descricaoInstitucional {
+  color: var(--gray-light);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.iconeInstagram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgba(18, 33, 56, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  text-decoration: none;
+}
+
+.colunaLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tituloColuna {
+  color: var(--white);
+  font-size: 0.88rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.linkItem {
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 0.82rem;
+  padding: 2px 0;
+}
+
+.colunaContato {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textoContato {
+  color: var(--gray-light);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.linkWhatsapp {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 800;
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.faixaInferior {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.selosParceiros {
+  display: flex;
+  gap: 8px;
+}
+
+.badgeSelo {
+  background-color: var(--white);
+  color: var(--black);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.textoCopyright {
+  color: var(--gray);
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.cnpjDestaque {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.botaoWhatsappFlutuante {
+  position: fixed;
+  bottom: 16px;
+  right: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2fe675, #25d366);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+  z-index: 999;
+}
+
+@media (min-width: 768px) {
+  .rodape {
+    padding: var(--espacamento-secao) 0 24px;
+  }
+  .gradePrincipal {
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+    gap: 32px;
+    margin-bottom: 36px;
+  }
+  .colunaInstitucional {
+    grid-column: span 1;
+  }
+  .colunaContato {
+    grid-column: span 1;
+  }
+  .faixaInferior {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .textoCopyright {
+    text-align: right;
+  }
+  .botaoWhatsappFlutuante {
+    bottom: 24px;
+    right: 20px;
+    width: 58px;
+    height: 58px;
+  }
+}
