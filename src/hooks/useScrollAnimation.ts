@@ -14,19 +14,19 @@ export function useScrollAnimation<T extends HTMLElement>(opcoes: OpcoesAnimacao
   const elementoRef = useRef<T>(null);
 
   const {
-    distanciaY = 32,
-    atrasoStagger = 120,
-    duracao = 1200,
-    escalaInicial = 0.96,
-    offsetThreshold = 0.08,
+    distanciaY = 30,
+    atrasoStagger = 180,
+    duracao = 2100, // Animação mais lenta e fluida no scroll
+    escalaInicial = 0.97,
+    offsetThreshold = 0.15,
   } = opcoes;
 
   useEffect(() => {
     const el = elementoRef.current;
     if (!el) return;
 
-    // Curva cúbica oficial da v4 via função
-    const curvaSuave = cubicBezier(0.22, 1, 0.36, 1);
+    // Curva cúbica suave para entrada gradual sem sobressaltos
+    const curvaSuave = cubicBezier(0.16, 1, 0.3, 1);
 
     const observador = new IntersectionObserver(
       (entradas) => {

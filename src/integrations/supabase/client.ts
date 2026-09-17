@@ -18,6 +18,7 @@ export interface Post {
   category?: string;
 }
 
+// Busca defensiva dos posts da empresa 'gv5'
 export async function buscarPostsEmpresa(): Promise<Post[]> {
   try {
     const { data: company, error: companyError } = await supabase
@@ -28,7 +29,7 @@ export async function buscarPostsEmpresa(): Promise<Post[]> {
       .single();
 
     if (companyError || !company) {
-      console.warn("Empresa 'gv5' não encontrada ou inativa.");
+      console.warn("Empresa 'gv5' não encontrada ou inativa no Supabase.");
       return [];
     }
 
@@ -40,17 +41,18 @@ export async function buscarPostsEmpresa(): Promise<Post[]> {
       .order("published_at", { ascending: false });
 
     if (postsError || !posts) {
-      console.warn("Erro ao buscar posts:", postsError?.message);
+      console.warn("Erro ao buscar publicações:", postsError?.message);
       return [];
     }
 
     return posts as Post[];
   } catch (err) {
-    console.error("Falha defensiva ao consultar o Supabase:", err);
+    console.error("Falha defensiva ao consultar posts do blog:", err);
     return [];
   }
 }
 
+// Busca defensiva de post individual pelo slug
 export async function buscarPostPorSlug(slug: string): Promise<Post | null> {
   try {
     const { data: company, error: companyError } = await supabase
@@ -74,7 +76,7 @@ export async function buscarPostPorSlug(slug: string): Promise<Post | null> {
 
     return post as Post;
   } catch (err) {
-    console.error("Falha defensiva ao buscar post por slug:", err);
+    console.error("Falha defensiva ao consultar post por slug:", err);
     return null;
   }
 }

@@ -49,7 +49,7 @@ export default async function BlogIndexPage() {
 
                 return (
                   <article key={post.id} className={styles.cardArtigo}>
-                    <Link href={`/blog/${post.slug}`} className={styles.linkCapa}>
+                    <Link href={"/blog/" + post.slug} className={styles.linkCapa}>
                       {post.cover_image ? (
                         <img
                           src={post.cover_image}
@@ -76,14 +76,14 @@ export default async function BlogIndexPage() {
                       </div>
 
                       <h2 className={styles.tituloCard}>
-                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                        <Link href={"/blog/" + post.slug}>{post.title}</Link>
                       </h2>
 
                       {post.excerpt && (
                         <p className={styles.resumoCard}>{post.excerpt}</p>
                       )}
 
-                      <Link href={`/blog/${post.slug}`} className={styles.linkLeitura}>
+                      <Link href={"/blog/" + post.slug} className={styles.linkLeitura}>
                         <span>Ler publicação</span>
                         <ArrowRight size={14} />
                       </Link>

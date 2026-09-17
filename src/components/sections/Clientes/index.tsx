@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, TouchEvent } from "react";
 import Image from "next/image";
-import { animate } from "animejs";
+import { animate, cubicBezier } from "animejs";
 import { ChevronLeft, ChevronRight, Hand } from "lucide-react";
 import styles from "./style.module.css";
 
@@ -67,18 +67,41 @@ const CARDS_INICIAIS: CardLeque[] = [
   },
 ];
 
+const INDICE_CENTRAL = 2;
+
 export default function Clientes() {
   const secaoRef = useRef<HTMLElement>(null);
   const deckRef = useRef<HTMLDivElement>(null);
+  const jaAnimouEntrada = useRef(false);
 
-  const [indiceAtivo, setIndiceAtivo] = useState(2); // Card CTA começa no meio
+  const [indiceAtivo, setIndiceAtivo] = useState(INDICE_CENTRAL);
   const [jaInteragiu, setJaInteragiu] = useState(false);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  // Recalcula posições do leque em relação ao card ativo
-  const renderizarTransforms = (novoAtivo: number) => {
+  // Animação de texto interno do CTA central
+  const animarLinhasCTA = () => {
+    const elDeck = deckRef.current;
+    if (!elDeck) return;
+
+    const linhas = Array.from(
+      elDeck.querySelectorAll<HTMLElement>("." + styles.linhaTexto)
+    );
+    if (linhas.length === 0) return;
+
+    linhas.forEach((linha, i) => {
+      animate(linha, {
+        translateY: ["120%", "0%"],
+        duration: 1200,
+        ease: cubicBezier(0.16, 1, 0.3, 1),
+        delay: i * 200,
+      });
+    });
+  };
+
+  // Posicionamento e movimentação das cartas
+  const animarCardsParaIndice = (novoAtivo: number, duracao: number = 850) => {
     const elDeck = deckRef.current;
     if (!elDeck) return;
 
@@ -92,52 +115,95 @@ export default function Clientes() {
     const spacing = isMobile ? 54 : cardW * 0.85;
     const rotBase = isMobile ? 6.5 : 9;
     const transYBase = isMobile ? 8 : 18;
-    const escalaLateral = isMobile ? 0.9 : 0.93;
+    const escalaLateral = isMobile ? 0.90 : 0.93;
 
     cards.forEach((card, index) => {
       const diff = index - novoAtivo;
       const absDiff = Math.abs(diff);
 
-      const zIndex = 20 - absDiff;
-      card.style.zIndex = String(zIndex);
+      card.style.zIndex = String(20 - absDiff);
 
       const finalX = diff * spacing;
       const finalY = absDiff * transYBase;
       const finalRot = diff * rotBase;
-      const finalScale = diff === 0 ? 1.05 : Math.max(0.82, escalaLateral - absDiff * 0.03);
+      const finalScale = diff === 0 ? 1.04 : Math.max(0.82, escalaLateral - absDiff * 0.03);
 
       animate(card, {
         translateX: finalX,
         translateY: finalY,
         rotate: finalRot,
         scale: finalScale,
-        duration: 550,
-        ease: "outCubic",
+        opacity: 1,
+        duration: duracao,
+        ease: cubicBezier(0.16, 1, 0.3, 1),
       });
     });
+  };
+
+  // Abertura Lenta do Leque acionada no Scroll
+  const dispararAberturaScroll = () => {
+    const elDeck = deckRef.current;
+    if (!elDeck) return;
+
+    const cards = Array.from(
+      elDeck.querySelectorAll<HTMLElement>("." + styles.cardLeque)
+    );
+    if (cards.length === 0) return;
+
+    const isMobile = window.innerWidth < 768;
+    const cardW = isMobile ? 158 : 235;
+    const spacing = isMobile ? 54 : cardW * 0.85;
+    const rotBase = isMobile ? 6.5 : 9;
+    const transYBase = isMobile ? 8 : 18;
+    const escalaLateral = isMobile ? 0.90 : 0.93;
+
+    // Começam empilhadas e se expandem suavemente em leque lento
+    cards.forEach((card, index) => {
+      const diff = index - INDICE_CENTRAL;
+      const absDiff = Math.abs(diff);
+
+      card.style.zIndex = String(20 - absDiff);
+
+      const finalX = diff * spacing;
+      const finalY = absDiff * transYBase;
+      const finalRot = diff * rotBase;
+      const finalScale = diff === 0 ? 1.04 : Math.max(0.82, escalaLateral - absDiff * 0.03);
+
+      animate(card, {
+        translateX: [diff * 4, finalX],
+        translateY: [24, finalY],
+        rotate: [diff * 1.5, finalRot],
+        scale: [0.94, finalScale],
+        opacity: [0, 1],
+        duration: 2800, // Duração lenta e graciosa
+        ease: cubicBezier(0.16, 1, 0.3, 1),
+        delay: (2 - absDiff) * 220,
+      });
+    });
+
+    window.setTimeout(animarLinhasCTA, 1000);
   };
 
   const selecionarCard = (index: number) => {
     setJaInteragiu(true);
     setIndiceAtivo(index);
-    renderizarTransforms(index);
+    animarCardsParaIndice(index, 900);
   };
 
   const proximoCard = () => {
     setJaInteragiu(true);
     const prox = Math.min(CARDS_INICIAIS.length - 1, indiceAtivo + 1);
     setIndiceAtivo(prox);
-    renderizarTransforms(prox);
+    animarCardsParaIndice(prox, 900);
   };
 
   const anteriorCard = () => {
     setJaInteragiu(true);
     const ant = Math.max(0, indiceAtivo - 1);
     setIndiceAtivo(ant);
-    renderizarTransforms(ant);
+    animarCardsParaIndice(ant, 900);
   };
 
-  // Suporte a gestos touch (arrastar o dedo)
   const lidarTouchStart = (e: TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
   };
@@ -148,7 +214,7 @@ export default function Clientes() {
 
   const lidarTouchEnd = () => {
     const diferenca = touchStartX.current - touchEndX.current;
-    if (Math.abs(diferenca) > 40) {
+    if (Math.abs(diferenca) > 45) {
       if (diferenca > 0) {
         proximoCard();
       } else {
@@ -158,7 +224,25 @@ export default function Clientes() {
   };
 
   useEffect(() => {
-    renderizarTransforms(indiceAtivo);
+    const secao = secaoRef.current;
+    if (!secao) return;
+
+    // Observador que dispara a animação exatamente quando o usuário desce até a seção
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((entrada) => {
+          if (entrada.isIntersecting && !jaAnimouEntrada.current) {
+            jaAnimouEntrada.current = true;
+            dispararAberturaScroll();
+            observador.disconnect();
+          }
+        });
+      },
+      { threshold: 0.22, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    observador.observe(secao);
+    return () => observador.disconnect();
   }, []);
 
   return (
@@ -175,7 +259,6 @@ export default function Clientes() {
           </p>
         </div>
 
-        {/* Dica visual de interação no mobile */}
         {!jaInteragiu && (
           <div className={styles.dicaInteracao}>
             <Hand size={14} className={styles.iconeMaoDica} />
@@ -203,6 +286,7 @@ export default function Clientes() {
                     card.tipo === "cta" ? styles.cardCTA : "",
                   ].filter(Boolean).join(" ")}
                   onClick={() => selecionarCard(index)}
+                  style={{ opacity: 0 }} // Inicia oculto até a entrada via scroll
                 >
                   {card.tipo === "cliente" ? (
                     <>
@@ -266,7 +350,6 @@ export default function Clientes() {
           </div>
         </div>
 
-        {/* Controles de Navegação Rápida (Dots + Setinhas) */}
         <div className={styles.barraControlesMobile}>
           <button
             type="button"

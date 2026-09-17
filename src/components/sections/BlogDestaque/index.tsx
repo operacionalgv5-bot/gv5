@@ -48,6 +48,7 @@ export default function BlogDestaque() {
     return () => observador.disconnect();
   }, [posts]);
 
+  // Se não houver posts, oculta defensivamente a seção sem quebrar a Landing Page
   if (posts.length === 0) {
     return null;
   }
@@ -80,7 +81,7 @@ export default function BlogDestaque() {
             return (
               <article key={post.id} className={styles.cardDestaque}>
                 {post.cover_image && (
-                  <Link href={`/blog/${post.slug}`} className={styles.capaCard}>
+                  <Link href={"/blog/" + post.slug} className={styles.capaCard}>
                     <img
                       src={post.cover_image}
                       alt={post.title}
@@ -95,12 +96,12 @@ export default function BlogDestaque() {
                     <span>{dataFormatada}</span>
                   </div>
                   <h3 className={styles.tituloCard}>
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                    <Link href={"/blog/" + post.slug}>{post.title}</Link>
                   </h3>
                   {post.excerpt && (
                     <p className={styles.resumoCard}>{post.excerpt}</p>
                   )}
-                  <Link href={`/blog/${post.slug}`} className={styles.linkCard}>
+                  <Link href={"/blog/" + post.slug} className={styles.linkCard}>
                     <span>Ler artigo completo</span>
                     <ArrowUpRight size={15} />
                   </Link>

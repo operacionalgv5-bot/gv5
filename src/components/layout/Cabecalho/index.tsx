@@ -16,10 +16,8 @@ export default function Cabecalho() {
       if (scrollAtual < 40) {
         setVisivel(true);
       } else if (scrollAtual > ultimoScrollY.current && scrollAtual > 120) {
-        // Rolando para baixo -> esconde
         setVisivel(false);
       } else if (scrollAtual < ultimoScrollY.current) {
-        // Rolando para cima -> exibe
         setVisivel(true);
       }
 
@@ -31,7 +29,7 @@ export default function Cabecalho() {
   }, []);
 
   return (
-    <div className={`${styles.envolturaFixa} ${!visivel ? styles.escondido : ""}`}>
+    <div className={[styles.envolturaFixa, !visivel ? styles.escondido : ""].filter(Boolean).join(" ")}>
       <header className={styles.cabecalhoFlutuante}>
         <div className={styles.conteudoInterno}>
           <Link href="/" className={styles.logoArea}>
@@ -46,15 +44,16 @@ export default function Cabecalho() {
           </Link>
 
           <nav className={styles.navegacaoDesktop}>
-            <a href="#inicio" className={styles.linkNavegacao}>Início</a>
-            <a href="#clientes" className={styles.linkNavegacao}>Clientes</a>
-            <a href="#metodo" className={styles.linkNavegacao}>Método</a>
-            <a href="#servicos" className={styles.linkNavegacao}>Serviços</a>
-            <a href="#faq" className={styles.linkNavegacao}>FAQ</a>
+            <Link href="/" className={styles.linkNavegacao}>Início</Link>
+            <a href="/#clientes" className={styles.linkNavegacao}>Clientes</a>
+            <a href="/#metodo" className={styles.linkNavegacao}>Método</a>
+            <a href="/#servicos" className={styles.linkNavegacao}>Serviços</a>
+            <Link href="/blog" className={styles.linkNavegacao}>Blog</Link>
+            <a href="/#faq" className={styles.linkNavegacao}>FAQ</a>
           </nav>
 
           <div className={styles.areaAcao}>
-            <a href="#inicio" className={styles.botaoFaleConosco}>
+            <a href="/#inicio" className={styles.botaoFaleConosco}>
               <span>Fale conosco</span>
               <ArrowUpRight size={15} />
             </a>

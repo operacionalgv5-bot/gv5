@@ -21,7 +21,7 @@
 .cabecalhoFlutuante {
   pointer-events: auto;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1140px;
   background: rgba(10, 18, 30, 0.78);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -58,7 +58,7 @@
   display: none;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 28px;
 }
 
 .linkNavegacao {

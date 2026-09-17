@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: PostPageProps) {
   }
 
   return {
-    title: `${post.title} | GV5 Assessoria`,
-    description: post.excerpt || "Leia mais na GV5 Assessoria.",
+    title: post.title + " | GV5 Assessoria",
+    description: post.excerpt || "Leia o artigo completo na GV5 Assessoria.",
   };
 }
 
@@ -51,7 +51,7 @@ export default async function ArtigoIndividualPage({ params }: PostPageProps) {
         <div className="container">
           <Link href="/blog" className={styles.botaoVoltar}>
             <ArrowLeft size={16} />
-            <span>Voltar para todas as publicações</span>
+            <span>Voltar para todos os artigos</span>
           </Link>
 
           <article className={styles.artigoCompleto}>
@@ -83,7 +83,7 @@ export default async function ArtigoIndividualPage({ params }: PostPageProps) {
               </div>
             )}
 
-            {/* Renderização de Rich Text preservando links, imagens e formatação estruturada */}
+            {/* Renderização de Rich Text estruturado com HTML sanitizado e elementos interativos */}
             <div
               className={styles.conteudoRico}
               dangerouslySetInnerHTML={{ __html: post.content }}
@@ -93,13 +93,13 @@ export default async function ArtigoIndividualPage({ params }: PostPageProps) {
             <div className={styles.caixaCtaConversao}>
               <div className={styles.textosCta}>
                 <h3 className={styles.tituloCta}>
-                  Pronto para transformar sua operação gastronômica?
+                  Pronto para transformar seu restaurante em uma máquina de vendas?
                 </h3>
                 <p className={styles.descricaoCta}>
-                  Agende agora um diagnóstico executivo gratuito com um assessor sênior da GV5 e descubra onde estão as alavancas ocultas de lucro do seu negócio.
+                  Agende um diagnóstico comercial gratuito com um assessor sênior da GV5 e descubra os pontos cegos de lucro da sua operação.
                 </p>
               </div>
-              <a href="/#contato" className={styles.botaoAcaoCta}>
+              <a href="/#inicio" className={styles.botaoAcaoCta}>
                 <span>Solicitar Diagnóstico Comercial</span>
                 <ArrowUpRight size={18} />
               </a>
