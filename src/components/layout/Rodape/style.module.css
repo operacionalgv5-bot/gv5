@@ -94,25 +94,33 @@
 
 .faixaInferior {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 14px;
+  padding-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   align-items: center;
 }
 
 .selosParceiros {
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: 10px;
 }
 
-.badgeSelo {
-  background-color: var(--white);
-  color: var(--black);
-  padding: 5px 8px;
-  border-radius: 5px;
-  font-size: 0.65rem;
-  font-weight: 800;
+.cardSelo {
+  background: #ffffff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.imagemSelo {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
 }
 
 .textoCopyright {
@@ -194,10 +202,8 @@
     justify-content: space-between;
     padding-top: 24px;
   }
-  .badgeSelo {
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.72rem;
+  .imagemSelo {
+    height: 26px;
   }
   .textoCopyright {
     text-align: right;

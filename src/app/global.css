@@ -8,7 +8,7 @@
   --red: #d42020;
   --red-dark: #b01818;
   --red-light: #ff3333;
-  --red-glow: rgba(212, 32, 32, 0.45);
+  --red-glow: rgba(212, 32, 32, 0.2);
   --navy: #09111c;
   --navy2: #0d1a2e;
   --navy3: #122138;
@@ -27,18 +27,18 @@ html, body {
   overflow-x: clip;
   scroll-behavior: smooth;
   background-color: var(--black);
+  /* Efeito de iluminação de fundo reduzido para máxima sobriedade */
   background-image: 
-    radial-gradient(circle at 50% -10%, rgba(212, 32, 32, 0.18) 0%, transparent 40%),
-    radial-gradient(circle at 10% 30%, rgba(25, 45, 74, 0.5) 0%, transparent 40%),
-    radial-gradient(circle at 90% 60%, rgba(212, 32, 32, 0.12) 0%, transparent 35%),
-    linear-gradient(180deg, #09111c 0%, #050a12 100%);
+    radial-gradient(circle at 50% -5%, rgba(212, 32, 32, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 10% 30%, rgba(25, 45, 74, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 90% 65%, rgba(212, 32, 32, 0.03) 0%, transparent 40%),
+    linear-gradient(180deg, #070c14 0%, #03060a 100%);
   background-attachment: fixed;
   color: var(--white);
   font-family: var(--fonte-principal);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Regra Mandatória: exatos 7px das bordas no celular */
 .container {
   width: 100%;
   max-width: 1200px;

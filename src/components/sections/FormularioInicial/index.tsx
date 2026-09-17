@@ -1,9 +1,57 @@
 "use client";
-import { useState } from "react";
-import { Check, ArrowUpRight, Loader2, CheckCircle2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { Check, ArrowUpRight, Loader2, CheckCircle2, ChevronDown } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
+
+function aplicarMascaraTelefone(valor: string) {
+  const nums = valor.replace(/\D/g, "").slice(0, 11);
+  if (nums.length <= 2) return nums;
+  if (nums.length <= 6) return "(" + nums.slice(0, 2) + ") " + nums.slice(2);
+  if (nums.length <= 10) {
+    return "(" + nums.slice(0, 2) + ") " + nums.slice(2, 6) + "-" + nums.slice(6);
+  }
+  return "(" + nums.slice(0, 2) + ") " + nums.slice(2, 7) + "-" + nums.slice(7, 11);
+}
+
+const OPCOES_SEGMENTO = [
+  "Pizzarias",
+  "Hamburguerias",
+  "Restaurante comida brasileira",
+  "Churrascaria steakhouse",
+  "Restaurante japonês",
+  "Restaurante massas italiano",
+  "Restaurante comida árabe",
+  "Açaí / sorveteria",
+  "Cafeteria",
+  "Doceria",
+  "Gastrobar",
+  "Outros",
+];
+
+const OPCOES_FATURAMENTO = [
+  "Até 30 mil",
+  "30 mil até 50 mil",
+  "50 mil até 80 mil",
+  "80 mil até 100 mil",
+  "100 mil até 150 mil",
+  "150 mil até 250 mil",
+  "250 mil até 400 mil",
+  "400 mil até 600 mil",
+  "600 mil até 1 milhão",
+  "Mais de 1 milhão",
+];
+
+// Logos de clientes para o carrossel contínuo
+const LOGOS_CLIENTES = [
+  { nome: "Fresh Sandwich", src: "/clientes/fresh.png" },
+  { nome: "LarShop", src: "/clientes/LarShop.png" },
+  { nome: "Lig Lig", src: "/clientes/lig-lig.png" },
+  { nome: "Marques Araújo", src: "/clientes/marques-araujo.png" },
+  { nome: "Press Metrologia", src: "/clientes/press-metrologia.png" },
+  { nome: "Real Motos", src: "/clientes/real-motos.png" },
+];
 
 export default function FormularioInicial() {
   const containerRef = useScrollAnimation<HTMLDivElement>({
@@ -18,27 +66,84 @@ export default function FormularioInicial() {
   const [segmento, setSegmento] = useState("");
   const [faturamento, setFaturamento] = useState("");
 
+  const [abertoSegmento, setAbertoSegmento] = useState(false);
+  const [abertoFaturamento, setAbertoFaturamento] = useState(false);
+
+  const refDropdownSegmento = useRef<HTMLDivElement>(null);
+  const refDropdownFaturamento = useRef<HTMLDivElement>(null);
+
+  const [honeypot, setHoneypot] = useState("");
+  const [tokenSeguranca, setTokenSeguranca] = useState<{ token: string; timestamp: number } | null>(null);
+
   const [enviando, setEnviando] = useState(false);
   const [sucesso, setSucesso] = useState(false);
   const [mensagemErro, setMensagemErro] = useState("");
 
+  useEffect(() => {
+    const escutarCliqueFora = (e: MouseEvent) => {
+      if (refDropdownSegmento.current && !refDropdownSegmento.current.contains(e.target as Node)) {
+        setAbertoSegmento(false);
+      }
+      if (refDropdownFaturamento.current && !refDropdownFaturamento.current.contains(e.target as Node)) {
+        setAbertoFaturamento(false);
+      }
+    };
+    document.addEventListener("mousedown", escutarCliqueFora);
+    return () => document.removeEventListener("mousedown", escutarCliqueFora);
+  }, []);
+
+  const carregarDesafio = async () => {
+    try {
+      const res = await fetch("/api/lead", { method: "GET", cache: "no-store" });
+      if (res.ok) {
+        const dados = await res.json();
+        setTokenSeguranca(dados);
+      }
+    } catch {
+      // Handshake inicial silencioso
+    }
+  };
+
+  useEffect(() => {
+    carregarDesafio();
+  }, []);
+
   const lidarComEnvio = async (e: React.FormEvent) => {
     e.preventDefault();
-    setEnviando(true);
     setMensagemErro("");
 
-    try {
-      const { error } = await supabase.from("leads").insert([
-        {
-          name: nome.trim(),
-          company_name: empresa.trim(),
-          phone: telefone.trim(),
-          segment: segmento || "Não informado",
-          revenue: faturamento || "Não informado",
-        },
-      ]);
+    if (!segmento) {
+      setMensagemErro("Por favor, selecione um segmento.");
+      return;
+    }
+    if (!faturamento) {
+      setMensagemErro("Por favor, selecione a faixa de faturamento.");
+      return;
+    }
 
-      if (error) throw error;
+    setEnviando(true);
+
+    try {
+      const resposta = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: nome,
+          company_name: empresa,
+          phone: telefone,
+          segment: segmento,
+          revenue: faturamento,
+          honeypot: honeypot,
+          token: tokenSeguranca?.token,
+          timestamp: tokenSeguranca?.timestamp,
+        }),
+      });
+
+      const resultado = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(resultado.error || "Ocorreu um erro ao enviar.");
+      }
 
       setSucesso(true);
       setNome("");
@@ -46,9 +151,9 @@ export default function FormularioInicial() {
       setEmpresa("");
       setSegmento("");
       setFaturamento("");
+      setHoneypot("");
     } catch (err: any) {
-      console.error("Erro ao salvar lead:", err);
-      setMensagemErro("Ocorreu um erro ao enviar. Tente novamente.");
+      setMensagemErro(err.message || "Ocorreu um erro ao enviar. Tente novamente.");
     } finally {
       setEnviando(false);
     }
@@ -95,61 +200,150 @@ export default function FormularioInicial() {
                 <button
                   type="button"
                   className={styles.botaoNovoEnvio}
-                  onClick={() => setSucesso(false)}
+                  onClick={() => {
+                    setSucesso(false);
+                    carregarDesafio();
+                  }}
                 >
                   Enviar outra mensagem
                 </button>
               </div>
             ) : (
               <form className={styles.formulario} onSubmit={lidarComEnvio}>
+                <div style={{ display: "none", opacity: 0, position: "absolute", left: "-9999px" }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="contact_check_field"
+                    tabIndex={-1}
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div className={styles.cabecalhoFormulario}>
+                  <span className={styles.rotuloFormulario}>Diagnóstico Comercial</span>
+                  <p className={styles.chamadaFormulario}>Receba a consultoria inicial da nossa equipe</p>
+                </div>
+
                 <input
                   type="text"
                   placeholder="Seu nome completo"
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
                   required
+                  maxLength={80}
                   className={styles.campoTexto}
                 />
+
                 <input
                   type="tel"
                   placeholder="(DDD) 99999-9999"
                   value={telefone}
-                  onChange={(e) => setTelefone(e.target.value)}
+                  onChange={(e) => setTelefone(aplicarMascaraTelefone(e.target.value))}
                   required
                   className={styles.campoTexto}
                 />
+
                 <input
                   type="text"
                   placeholder="Nome do seu restaurante / delivery"
                   value={empresa}
                   onChange={(e) => setEmpresa(e.target.value)}
                   required
+                  maxLength={100}
                   className={styles.campoTexto}
                 />
-                <select
-                  value={segmento}
-                  onChange={(e) => setSegmento(e.target.value)}
-                  className={styles.campoSelecao}
-                  required
-                >
-                  <option value="" disabled>Selecionar segmento</option>
-                  <option value="Restaurante Tradicional">Restaurante Tradicional</option>
-                  <option value="Delivery / Dark Kitchen">Delivery / Dark Kitchen</option>
-                  <option value="Hamburgueria / Pizzaria">Hamburgueria / Pizzaria</option>
-                  <option value="Outro segmento de food">Outro segmento de food</option>
-                </select>
-                <select
-                  value={faturamento}
-                  onChange={(e) => setFaturamento(e.target.value)}
-                  className={styles.campoSelecao}
-                  required
-                >
-                  <option value="" disabled>Faturamento médio mensal</option>
-                  <option value="Até R$ 30.000 / mês">Até R$ 30.000 / mês</option>
-                  <option value="R$ 30.000 a R$ 80.000 / mês">R$ 30.000 a R$ 80.000 / mês</option>
-                  <option value="R$ 80.000 a R$ 200.000 / mês">R$ 80.000 a R$ 200.000 / mês</option>
-                  <option value="Acima de R$ 200.000 / mês">Acima de R$ 200.000 / mês</option>
-                </select>
+
+                {/* Dropdown Customizado Glass - Segmento */}
+                <div className={styles.envolturaDropdown} ref={refDropdownSegmento}>
+                  <button
+                    type="button"
+                    className={[
+                      styles.gatilhoDropdown,
+                      abertoSegmento ? styles.gatilhoAberto : "",
+                      !segmento ? styles.placeholderCor : "",
+                    ].filter(Boolean).join(" ")}
+                    onClick={() => {
+                      setAbertoSegmento(!abertoSegmento);
+                      setAbertoFaturamento(false);
+                    }}
+                  >
+                    <span>{segmento || "Selecionar segmento"}</span>
+                    <ChevronDown
+                      size={17}
+                      className={[
+                        styles.iconeSeta,
+                        abertoSegmento ? styles.iconeSetaGiro : "",
+                      ].filter(Boolean).join(" ")}
+                    />
+                  </button>
+
+                  {abertoSegmento && (
+                    <div className={styles.menuOpcoesGlass}>
+                      {OPCOES_SEGMENTO.map((item) => (
+                        <div
+                          key={item}
+                          className={[
+                            styles.itemOpcao,
+                            segmento === item ? styles.opcaoAtiva : "",
+                          ].filter(Boolean).join(" ")}
+                          onClick={() => {
+                            setSegmento(item);
+                            setAbertoSegmento(false);
+                          }}
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Dropdown Customizado Glass - Faturamento */}
+                <div className={styles.envolturaDropdown} ref={refDropdownFaturamento}>
+                  <button
+                    type="button"
+                    className={[
+                      styles.gatilhoDropdown,
+                      abertoFaturamento ? styles.gatilhoAberto : "",
+                      !faturamento ? styles.placeholderCor : "",
+                    ].filter(Boolean).join(" ")}
+                    onClick={() => {
+                      setAbertoFaturamento(!abertoFaturamento);
+                      setAbertoSegmento(false);
+                    }}
+                  >
+                    <span>{faturamento || "Faturamento mensal aproximado"}</span>
+                    <ChevronDown
+                      size={17}
+                      className={[
+                        styles.iconeSeta,
+                        abertoFaturamento ? styles.iconeSetaGiro : "",
+                      ].filter(Boolean).join(" ")}
+                    />
+                  </button>
+
+                  {abertoFaturamento && (
+                    <div className={styles.menuOpcoesGlass}>
+                      {OPCOES_FATURAMENTO.map((item) => (
+                        <div
+                          key={item}
+                          className={[
+                            styles.itemOpcao,
+                            faturamento === item ? styles.opcaoAtiva : "",
+                          ].filter(Boolean).join(" ")}
+                          onClick={() => {
+                            setFaturamento(item);
+                            setAbertoFaturamento(false);
+                          }}
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
                 {mensagemErro && (
                   <span className={styles.textoErro}>{mensagemErro}</span>
@@ -171,6 +365,23 @@ export default function FormularioInicial() {
                 </button>
               </form>
             )}
+          </div>
+        </div>
+
+        {/* Carrossel de Logos de Clientes (Preto e Branco com Efeito Colorido ao Interagir) */}
+        <div className={styles.faixaCarrosselLogos}>
+          <div className={styles.trilhoLogos}>
+            {[...LOGOS_CLIENTES, ...LOGOS_CLIENTES, ...LOGOS_CLIENTES].map((cliente, idx) => (
+              <div key={idx} className={styles.itemLogoCliente} tabIndex={0}>
+                <Image
+                  src={cliente.src}
+                  alt={cliente.nome}
+                  width={110}
+                  height={50}
+                  className={styles.imagemClienteLogo}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

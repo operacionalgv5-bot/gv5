@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { MessageSquare, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
 import styles from "./style.module.css";
 
@@ -65,8 +65,24 @@ export default function Rodape() {
 
         <div className={styles.faixaInferior}>
           <div className={styles.selosParceiros}>
-            <div className={styles.badgeSelo}>Google Partner</div>
-            <div className={styles.badgeSelo}>Meta Business Partner</div>
+            <div className={styles.cardSelo}>
+              <Image
+                src="/google-Partner.png"
+                alt="Google Partner"
+                width={100}
+                height={30}
+                className={styles.imagemSelo}
+              />
+            </div>
+            <div className={styles.cardSelo}>
+              <Image
+                src="/meta-Business.png"
+                alt="Meta Business Partner"
+                width={100}
+                height={30}
+                className={styles.imagemSelo}
+              />
+            </div>
           </div>
           <div className={styles.textoCopyright}>
             2026 © GV5 Assessoria de Marketing Digital. CNPJ: <span className={styles.cnpjDestaque}>64.530.042/0001-17</span>. Todos os direitos reservados.

@@ -22,7 +22,6 @@
   max-width: 520px;
 }
 
-/* Mais linhas, fonte menor e espaçamento respirado */
 .tituloDestaque {
   font-size: clamp(1.15rem, 4.8vw, 1.35rem);
   font-weight: 900;
@@ -85,69 +84,216 @@
   max-width: 290px;
   padding: 11px 18px;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(18, 33, 56, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(14, 26, 43, 0.55);
   color: var(--white);
   font-size: 0.78rem;
   font-weight: 700;
   text-decoration: none;
   min-height: 42px;
   margin-top: 4px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.botaoResultados:hover {
+  background: rgba(22, 40, 68, 0.8);
+  transform: translateY(-1px);
 }
 
 .colunaFormulario {
   width: 100%;
-  max-width: 480px;
-  background-color: var(--white);
-  border-radius: 14px;
-  padding: 18px 14px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  max-width: 490px;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(10, 20, 36, 0.38) 100%
+  );
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(255, 255, 255, 0.42);
+  border-radius: 22px;
+  padding: 24px 18px 22px;
+  box-shadow: 
+    0 24px 50px -10px rgba(0, 0, 0, 0.65),
+    0 1px 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 0 16px rgba(255, 255, 255, 0.03);
 }
 
 .formulario {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-.campoTexto, .campoSelecao {
+.cabecalhoFormulario {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 4px;
+}
+
+.rotuloFormulario {
+  font-size: 0.76rem;
+  font-weight: 900;
+  color: var(--red-light);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
+}
+
+.chamadaFormulario {
+  font-size: 0.88rem;
+  color: var(--white);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.campoTexto {
   width: 100%;
-  padding: 11px 12px;
-  border: 1px solid #d5dce6;
-  border-radius: 6px;
-  font-size: 0.86rem;
-  color: var(--black);
-  background-color: #fafbfc;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   outline: none;
-  min-height: 44px;
+  min-height: 46px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
 }
 
-.campoTexto:focus, .campoSelecao:focus {
-  border-color: var(--red);
-  background-color: var(--white);
+.campoTexto::placeholder {
+  color: rgba(200, 215, 230, 0.7);
+}
+
+.campoTexto:focus {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(212, 32, 32, 0.25);
+}
+
+.envolturaDropdown {
+  position: relative;
+  width: 100%;
+}
+
+.gatilhoDropdown {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  outline: none;
+  min-height: 46px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
+}
+
+.placeholderCor {
+  color: rgba(200, 215, 230, 0.7);
+}
+
+.gatilhoDropdown:hover,
+.gatilhoAberto {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.iconeSeta {
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.iconeSetaGiro {
+  transform: rotate(180deg);
+  color: var(--white);
+}
+
+.menuOpcoesGlass {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  background: rgba(10, 18, 30, 0.88);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 6px;
+  z-index: 100;
+  box-shadow: 
+    0 18px 36px -4px rgba(0, 0, 0, 0.85),
+    0 1px 1px 0 rgba(255, 255, 255, 0.2) inset;
+}
+
+.menuOpcoesGlass::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menuOpcoesGlass::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+.itemOpcao {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--gray-light);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.itemOpcao:hover {
+  background: rgba(212, 32, 32, 0.25);
+  color: var(--white);
+}
+
+.opcaoAtiva {
+  background: rgba(212, 32, 32, 0.35);
+  color: var(--white);
+  font-weight: 700;
 }
 
 .botaoSubmissao {
   width: 100%;
-  background-color: #c91f1f;
+  background: linear-gradient(135deg, #e52828 0%, #b01818 100%);
   color: var(--white);
-  padding: 13px 10px;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.84rem;
+  padding: 14px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  font-size: 0.86rem;
   font-weight: 900;
   cursor: pointer;
-  min-height: 46px;
+  min-height: 48px;
   text-transform: uppercase;
-  letter-spacing: 0.2px;
-  margin-top: 2px;
+  letter-spacing: 0.3px;
+  margin-top: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 8px 20px rgba(212, 32, 32, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .botaoSubmissao:hover:not(:disabled) {
-  background-color: var(--red-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(212, 32, 32, 0.55);
 }
 
 .botaoSubmissao:disabled {
@@ -170,8 +316,8 @@
 }
 
 .textoErro {
-  color: #dc2626;
-  font-size: 0.78rem;
+  color: #fca5a5;
+  font-size: 0.8rem;
   font-weight: 700;
   text-align: center;
 }
@@ -181,36 +327,104 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 20px 12px;
-  gap: 10px;
+  padding: 28px 16px;
+  gap: 12px;
 }
 
 .iconeSucesso {
-  color: #16a34a;
+  color: #4ade80;
+  filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.4));
 }
 
 .tituloSucesso {
-  color: var(--black);
-  font-size: 1.15rem;
+  color: var(--white);
+  font-size: 1.25rem;
   font-weight: 900;
 }
 
 .textoSucesso {
-  color: #4b5563;
-  font-size: 0.82rem;
-  line-height: 1.45;
+  color: var(--gray-light);
+  font-size: 0.86rem;
+  line-height: 1.5;
 }
 
 .botaoNovoEnvio {
-  background: transparent;
-  border: 1px solid #d1d5db;
-  padding: 8px 14px;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 18px;
+  border-radius: 8px;
   font-weight: 700;
-  color: #374151;
-  font-size: 0.8rem;
+  color: var(--white);
+  font-size: 0.82rem;
   cursor: pointer;
   margin-top: 6px;
+  transition: background 0.2s ease;
+}
+
+.botaoNovoEnvio:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ============================================================
+   CARROSSEL DE LOGOS DE CLIENTES (TAMANHO AMPLIADO)
+   ============================================================ */
+.faixaCarrosselLogos {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 50px;
+  padding: 24px 0 18px;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.trilhoLogos {
+  display: flex;
+  align-items: center;
+  gap: 55px;
+  width: max-content;
+  animation: rolarLogosClientes 26s linear infinite;
+  padding: 8px 0;
+}
+
+.trilhoLogos:hover {
+  animation-play-state: paused;
+}
+
+.itemLogoCliente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+  filter: grayscale(100%) opacity(0.55);
+  transform: scale(1);
+  transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.itemLogoCliente:hover,
+.itemLogoCliente:focus,
+.itemLogoCliente:active {
+  filter: grayscale(0%) opacity(1) drop-shadow(0 0 16px rgba(255, 255, 255, 0.35));
+  transform: scale(1.28);
+}
+
+.imagemClienteLogo {
+  height: 54px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  user-select: none;
+}
+
+@keyframes rolarLogosClientes {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.3333%);
+  }
 }
 
 @media (min-width: 900px) {
@@ -262,22 +476,33 @@
   }
   .colunaFormulario {
     max-width: none;
-    padding: 36px 30px;
-    border-radius: 14px;
+    padding: 34px 28px;
+    border-radius: 24px;
   }
   .formulario {
-    gap: 12px;
+    gap: 14px;
   }
-  .campoTexto, .campoSelecao {
-    padding: 14px;
-    font-size: 0.95rem;
-    border-radius: 8px;
-    min-height: 48px;
+  .campoTexto, .gatilhoDropdown {
+    padding: 14px 16px;
+    font-size: 0.92rem;
+    border-radius: 10px;
+    min-height: 50px;
   }
   .botaoSubmissao {
-    padding: 16px 12px;
+    padding: 16px 14px;
     font-size: 0.92rem;
-    border-radius: 8px;
+    border-radius: 10px;
     min-height: 52px;
+  }
+  .faixaCarrosselLogos {
+    margin-top: 68px;
+    padding: 28px 0 20px;
+  }
+  .trilhoLogos {
+    gap: 80px;
+  }
+  .imagemClienteLogo {
+    height: 68px;
+    max-width: 200px;
   }
 }

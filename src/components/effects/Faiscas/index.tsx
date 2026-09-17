@@ -12,6 +12,7 @@ interface Particula {
   vida: number;
   vidaMaxima: number;
   cor: string;
+  frequenciaOscilacao: number;
 }
 
 export default function Faiscas() {
@@ -34,58 +35,65 @@ export default function Faiscas() {
 
     window.addEventListener("resize", redimensionar);
 
-    // Menos faíscas no mobile para máxima performance
-    const totalParticulas = window.innerWidth < 768 ? 30 : 65;
+    const totalParticulas = window.innerWidth < 768 ? 36 : 64;
     const particulas: Particula[] = [];
+
+    // Cores incandescentes de alta emissão (ouro, fogo e carmim)
     const paletaCores = [
-      "rgba(255, 69, 0, ",
-      "rgba(212, 32, 32, ",
-      "rgba(255, 140, 0, ",
-      "rgba(255, 200, 50, ",
+      "rgba(255, 100, 20, ",
+      "rgba(255, 180, 50, ",
+      "rgba(255, 230, 130, ",
+      "rgba(255, 45, 15, ",
+      "rgba(225, 25, 25, ",
     ];
 
-    const criarParticula = (): Particula => ({
+    const criarParticula = (iniciarEmbaixo: boolean = true): Particula => ({
       x: Math.random() * largura,
-      y: altura + Math.random() * 40,
-      tamanho: Math.random() * 2.2 + 0.8,
-      velocidadeY: Math.random() * 1.8 + 0.9,
+      y: iniciarEmbaixo ? altura + Math.random() * 40 : Math.random() * altura,
+      tamanho: Math.random() * 2.2 + 1.0,
+      velocidadeY: Math.random() * 2.0 + 1.1,
       velocidadeX: (Math.random() - 0.5) * 0.9,
-      opacidade: Math.random() * 0.7 + 0.3,
+      opacidade: Math.random() * 0.4 + 0.6,
       vida: 0,
-      vidaMaxima: Math.random() * 180 + 100,
+      vidaMaxima: Math.random() * 240 + 160,
       cor: paletaCores[Math.floor(Math.random() * paletaCores.length)],
+      frequenciaOscilacao: Math.random() * 0.035 + 0.015,
     });
 
     for (let i = 0; i < totalParticulas; i++) {
-      const p = criarParticula();
-      p.y = Math.random() * altura;
-      particulas.push(p);
+      particulas.push(criarParticula(false));
     }
 
     const animar = () => {
       ctx.clearRect(0, 0, largura, altura);
+      ctx.globalCompositeOperation = "lighter";
 
       for (let i = 0; i < particulas.length; i++) {
         const p = particulas[i];
+
         p.y -= p.velocidadeY;
-        p.x += p.velocidadeX + Math.sin(p.vida * 0.04) * 0.35;
+        p.x += p.velocidadeX + Math.sin(p.vida * p.frequenciaOscilacao) * 0.35;
         p.vida++;
 
-        const fatorVida = 1 - p.vida / p.vidaMaxima;
-        const alfa = p.opacidade * Math.max(0, fatorVida);
+        const progressoVida = p.vida / p.vidaMaxima;
+        const fatorAlfa = Math.max(0, 1 - Math.pow(progressoVida, 1.4));
+        const alfaFinal = (p.opacidade * fatorAlfa).toFixed(3);
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.tamanho, 0, Math.PI * 2);
-        ctx.fillStyle = p.cor + alfa + ")";
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "rgba(212, 32, 32, 0.8)";
+        ctx.fillStyle = p.cor + alfaFinal + ")";
+
+        // Halo de brilho vívido
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = "rgba(255, 110, 30, 0.85)";
         ctx.fill();
 
-        if (p.vida >= p.vidaMaxima || p.y < -20) {
-          particulas[i] = criarParticula();
+        if (p.vida >= p.vidaMaxima || p.y < -30) {
+          particulas[i] = criarParticula(true);
         }
       }
 
+      ctx.globalCompositeOperation = "source-over";
       animacaoId = requestAnimationFrame(animar);
     };
 
