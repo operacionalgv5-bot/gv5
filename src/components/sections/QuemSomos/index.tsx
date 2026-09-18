@@ -5,9 +5,10 @@ import styles from "./style.module.css";
 
 export default function QuemSomos() {
   const secaoRef = useScrollAnimation<HTMLDivElement>({
-    distanciaY: 42,
-    atrasoStagger: 170,
-    duracao: 1450,
+    distanciaY: 40,
+    atrasoStagger: 140,
+    duracao: 1100,
+    triggerRatio: 0.40,
   });
 
   return (

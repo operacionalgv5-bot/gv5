@@ -1,56 +1,39 @@
 .secaoFaq {
-  padding: 42px 0 38px;
+  padding: 26px 0;
   background: transparent;
   position: relative;
   z-index: 2;
   overflow-x: clip;
 }
 
-.gradeConteudo {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.colunaTextos {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+.gradeConteudo { display: flex; flex-direction: column; gap: 16px; }
+.colunaTextos { display: flex; flex-direction: column; gap: 6px; }
 
 .etiquetaDestaque {
   color: var(--red-light);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 1.8px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .tituloSecao {
-  font-size: clamp(1.35rem, 5.2vw, 3rem);
+  font-size: clamp(1.4rem, 5.6vw, 3rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.18;
   text-transform: uppercase;
 }
 
-.descricaoSecao {
-  color: var(--gray-light);
-  font-size: 0.82rem;
-  line-height: 1.4;
-}
+.descricaoSecao { color: var(--gray-light); font-size: 0.92rem; line-height: 1.5; }
 
-.listaAcordeao {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
+.listaAcordeao { display: flex; flex-direction: column; gap: 8px; }
 
 .itemAcordeao {
   background-color: rgba(18, 33, 56, 0.75);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -60,23 +43,19 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 12px 10px;
+  padding: 14px 12px;
   background: transparent;
   border: none;
   cursor: pointer;
   text-align: left;
-  min-height: 44px;
+  min-height: 52px;
 }
 
-.blocoIconeTexto {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.blocoIconeTexto { display: flex; align-items: center; gap: 10px; }
 
 .iconePergunta {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background-color: rgba(212, 32, 32, 0.2);
   color: var(--red-light);
@@ -86,12 +65,7 @@
   flex-shrink: 0;
 }
 
-.textoPergunta {
-  color: var(--white);
-  font-size: 0.8rem;
-  font-weight: 700;
-  line-height: 1.3;
-}
+.textoPergunta { color: var(--white); font-size: 0.9rem; font-weight: 700; line-height: 1.3; }
 
 .setaAcordeao {
   color: var(--gray-light);
@@ -101,52 +75,24 @@
   flex-shrink: 0;
 }
 
-.setaAberta {
-  transform: rotate(180deg);
-  color: var(--red-light);
-}
+.setaAberta { transform: rotate(180deg); color: var(--red-light); }
 
 .corpoResposta {
-  padding: 0 10px 12px 40px;
+  padding: 0 12px 14px 46px;
   color: var(--gray-light);
-  font-size: 0.78rem;
-  line-height: 1.45;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 @media (min-width: 900px) {
-  .secaoFaq {
-    padding: var(--espacamento-secao) 0;
-  }
-  .gradeConteudo {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 48px;
-  }
-  .colunaTextos {
-    gap: 14px;
-  }
-  .tituloSecao {
-    font-size: clamp(2rem, 4vw, 3rem);
-  }
-  .descricaoSecao {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  .listaAcordeao {
-    gap: 12px;
-  }
-  .itemAcordeao {
-    border-radius: 10px;
-  }
-  .botaoPergunta {
-    padding: 18px 20px;
-  }
-  .textoPergunta {
-    font-size: 0.95rem;
-  }
-  .corpoResposta {
-    padding: 0 20px 20px 64px;
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
+  .secaoFaq { padding: var(--espacamento-secao) 0; }
+  .gradeConteudo { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; }
+  .colunaTextos { gap: 14px; }
+  .tituloSecao { font-size: clamp(2rem, 4vw, 3rem); }
+  .descricaoSecao { font-size: 0.95rem; line-height: 1.6; }
+  .listaAcordeao { gap: 12px; }
+  .itemAcordeao { border-radius: 10px; }
+  .botaoPergunta { padding: 18px 20px; }
+  .textoPergunta { font-size: 0.95rem; }
+  .corpoResposta { padding: 0 20px 20px 64px; font-size: 0.9rem; line-height: 1.6; }
 }

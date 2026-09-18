@@ -18,7 +18,8 @@
   --gray-light: #b0c4d8;
   --black: #050a12;
 
-  --espacamento-secao: clamp(42px, 6vw, 100px);
+  /* MOBILE: espaçamento mais enxuto para caber mais conteúdo acima da dobra */
+  --espacamento-secao: clamp(26px, 4.5vw, 70px);
   --fonte-principal: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -27,8 +28,7 @@ html, body {
   overflow-x: clip;
   scroll-behavior: smooth;
   background-color: var(--black);
-  /* Efeito de iluminação de fundo reduzido para máxima sobriedade */
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% -5%, rgba(212, 32, 32, 0.05) 0%, transparent 45%),
     radial-gradient(circle at 10% 30%, rgba(25, 45, 74, 0.16) 0%, transparent 45%),
     radial-gradient(circle at 90% 65%, rgba(212, 32, 32, 0.03) 0%, transparent 40%),
@@ -43,11 +43,9 @@ html, body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 7px;
+  padding: 0 10px;
 }
 
 @media (min-width: 768px) {
-  .container {
-    padding: 0 24px;
-  }
+  .container { padding: 0 24px; }
 }

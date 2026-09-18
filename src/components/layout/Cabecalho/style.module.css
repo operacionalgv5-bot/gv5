@@ -8,36 +8,39 @@
   z-index: 990;
   pointer-events: none;
   padding: 0 10px;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   transform: translateY(0);
   opacity: 1;
 }
 
 .escondido {
-  transform: translateY(-130%);
+  transform: translateY(-180%);
   opacity: 0;
+  pointer-events: none;
 }
 
 .cabecalhoFlutuante {
   pointer-events: auto;
   width: 100%;
   max-width: 1140px;
-  background: rgba(10, 18, 30, 0.78);
+  background: rgba(10, 18, 30, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
-  padding: 8px 16px;
-  box-shadow: 
+  border-radius: 16px;
+  /* MOBILE: header mais baixo */
+  padding: 6px 12px;
+  box-shadow:
     0 14px 30px -8px rgba(0, 0, 0, 0.7),
     0 0 1px 1px rgba(255, 255, 255, 0.06) inset;
+  position: relative;
 }
 
 .conteudoInterno {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 14px;
   width: 100%;
 }
 
@@ -49,7 +52,8 @@
 }
 
 .imagemLogo {
-  height: 28px;
+  /* MOBILE: logo menor para header compacto */
+  height: 24px;
   width: auto;
   object-fit: contain;
 }
@@ -67,60 +71,102 @@
   font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.2px;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition: color 0.2s ease;
 }
 
-.linkNavegacao:hover {
-  color: var(--white);
-}
+.linkNavegacao:hover { color: var(--white); }
 
 .areaAcao {
   display: flex;
   align-items: center;
+  gap: 8px;
   flex-shrink: 0;
 }
 
 .botaoFaleConosco {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 6px;
   background: linear-gradient(135deg, #e52828, #b01818);
   color: var(--white);
-  padding: 7px 15px;
+  padding: 9px 18px;
   border-radius: 9999px;
   text-decoration: none;
   font-weight: 800;
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.4px;
   white-space: nowrap;
-  min-height: 36px;
+  min-height: 38px;
   box-shadow: 0 4px 14px rgba(212, 32, 32, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.botaoFaleConosco:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(212, 32, 32, 0.5);
+.botaoHamburguer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* MOBILE: menor */
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  cursor: pointer;
 }
+
+.menuMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+  padding: 10px 4px 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.linkMenuMobile {
+  color: var(--gray-light);
+  text-decoration: none;
+  font-size: 0.98rem;
+  font-weight: 700;
+  padding: 11px 14px;
+  border-radius: 10px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.linkMenuMobile:hover,
+.linkMenuMobile:active {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+}
+
+.botaoMenuMobile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #e52828, #b01818);
+  color: var(--white);
+  padding: 13px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 8px;
+  box-shadow: 0 6px 20px rgba(212, 32, 32, 0.4);
+}
+
+.mobile { top: 6px; }
 
 @media (min-width: 768px) {
-  .envolturaFixa {
-    top: 18px;
-    padding: 0 24px;
-  }
-  .cabecalhoFlutuante {
-    padding: 10px 24px;
-  }
-  .imagemLogo {
-    height: 38px;
-  }
-  .navegacaoDesktop {
-    display: flex;
-  }
-  .botaoFaleConosco {
-    padding: 9px 20px;
-    font-size: 0.8rem;
-    min-height: 40px;
-  }
+  .envolturaFixa { top: 18px; padding: 0 24px; }
+  .cabecalhoFlutuante { padding: 10px 24px; border-radius: 9999px; }
+  .imagemLogo { height: 38px; }
+  .botaoHamburguer { width: 42px; height: 42px; }
+  .navegacaoDesktop { display: flex; }
+  .botaoFaleConosco { display: inline-flex; }
+  .botaoHamburguer { display: none; }
+  .menuMobile { display: none; }
 }

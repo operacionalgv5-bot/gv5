@@ -1,14 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { 
-  Radio, 
-  TrendingUp, 
-  Droplet, 
-  RotateCw, 
-  Send,
-  ArrowRight
-} from "lucide-react";
+import { Radio, TrendingUp, Droplet, RotateCw, Send, ArrowRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./style.module.css";
 
@@ -20,47 +13,22 @@ interface EtapaInfo {
 }
 
 const ETAPAS: EtapaInfo[] = [
-  {
-    id: "engajamento",
-    rotulo: "Engajamento",
-    icone: Radio,
-    descricao: "Criamos materiais visuais profissionais de alta atração para reter a atenção qualificada do seu público no raio de atendimento.",
-  },
-  {
-    id: "aquisicao",
-    rotulo: "Aquisição",
-    icone: TrendingUp,
-    descricao: "Atraímos novos clientes com campanhas pagas e orgânicas otimizadas exclusivamente para o perfil comprador da sua região.",
-  },
-  {
-    id: "monetizacao",
-    rotulo: "Monetização",
-    icone: Droplet,
-    descricao: "Otimizamos cardápios e esteiras de ofertas para elevar o ticket médio e rentabilizar o cliente logo no primeiro pedido.",
-  },
-  {
-    id: "retencao",
-    rotulo: "Retenção",
-    icone: RotateCw,
-    descricao: "Garantimos compras contínuas e menor custo de aquisição mantendo seus clientes sempre ativos e fiéis.",
-  },
-  {
-    id: "ativacao",
-    rotulo: "Ativação",
-    icone: Send,
-    descricao: "Reativamos clientes inativos e aceleramos vendas nos dias de menor movimento com automações inteligentes no WhatsApp.",
-  },
+  { id: "engajamento", rotulo: "Engajamento", icone: Radio, descricao: "Materiais visuais profissionais que prendem a atenção do seu público na região certa." },
+  { id: "aquisicao", rotulo: "Aquisição", icone: TrendingUp, descricao: "Campanhas pagas e orgânicas otimizadas para atrair o perfil comprador da sua região." },
+  { id: "monetizacao", rotulo: "Monetização", icone: Droplet, descricao: "Otimizamos cardápio e ofertas para elevar ticket médio e rentabilizar no primeiro pedido." },
+  { id: "retencao", rotulo: "Retenção", icone: RotateCw, descricao: "Compras contínuas com menor custo de aquisição. Seus clientes sempre ativos e fiéis." },
+  { id: "ativacao", rotulo: "Ativação", icone: Send, descricao: "Reativamos clientes inativos e aceleramos vendas nos dias fracos com automação no WhatsApp." },
 ];
 
 export default function Metodo() {
   const containerRef = useScrollAnimation<HTMLDivElement>({
-    distanciaY: 38,
-    atrasoStagger: 150,
-    duracao: 1400,
+    distanciaY: 30,
+    atrasoStagger: 120,
+    duracao: 1000,
+    triggerRatio: 0.40,
   });
 
   const [etapaAtiva, setEtapaAtiva] = useState<string>("aquisicao");
-
   const etapaSelecionada = ETAPAS.find((e) => e.id === etapaAtiva) || ETAPAS[1];
 
   return (
@@ -70,26 +38,25 @@ export default function Metodo() {
           <div className={styles.cabecalhoSecao}>
             <div className={styles.etiquetaSecao}>O Método GV5</div>
             <h2 className={styles.tituloSecao}>
-              EXISTE UM <span>MÉTODO COMPROVADO</span> PARA QUE SUA EMPRESA{" "}
-              <span>NUNCA PARE</span> DE CRESCER
+              Um método comprovado para sua empresa <span>nunca parar de crescer</span>
             </h2>
             <p className={styles.subtituloSecao}>
-              Se você seguir, irá manter seu negócio <strong>gerando resultados todos os dias</strong>.
+              Siga o passo a passo e veja seu negócio <strong>gerando resultado todos os dias</strong>.
             </p>
           </div>
 
           <div className={styles.diagramaContainer}>
             <div className={styles.colunaLinhasEsquerda}>
-              <div 
-                className={`${styles.itemLinha} ${etapaAtiva === "engajamento" ? styles.ativo : ""}`}
+              <div
+                className={styles.itemLinha + " " + (etapaAtiva === "engajamento" ? styles.ativo : "")}
                 onClick={() => setEtapaAtiva("engajamento")}
               >
                 <span className={styles.textoEtapa}>Engajamento</span>
                 <span className={styles.tracoConexao}></span>
                 <span className={styles.pontoBolinha}></span>
               </div>
-              <div 
-                className={`${styles.itemLinha} ${etapaAtiva === "ativacao" ? styles.ativo : ""}`}
+              <div
+                className={styles.itemLinha + " " + (etapaAtiva === "ativacao" ? styles.ativo : "")}
                 onClick={() => setEtapaAtiva("ativacao")}
               >
                 <span className={styles.textoEtapa}>Ativação</span>
@@ -109,24 +76,24 @@ export default function Metodo() {
             </div>
 
             <div className={styles.colunaLinhasDireita}>
-              <div 
-                className={`${styles.itemLinha} ${etapaAtiva === "retencao" ? styles.ativo : ""}`}
+              <div
+                className={styles.itemLinha + " " + (etapaAtiva === "retencao" ? styles.ativo : "")}
                 onClick={() => setEtapaAtiva("retencao")}
               >
                 <span className={styles.pontoBolinha}></span>
                 <span className={styles.tracoConexao}></span>
                 <span className={styles.textoEtapa}>Retenção</span>
               </div>
-              <div 
-                className={`${styles.itemLinha} ${etapaAtiva === "aquisicao" ? styles.ativo : ""}`}
+              <div
+                className={styles.itemLinha + " " + (etapaAtiva === "aquisicao" ? styles.ativo : "")}
                 onClick={() => setEtapaAtiva("aquisicao")}
               >
                 <span className={styles.pontoBolinha}></span>
                 <span className={styles.tracoConexao}></span>
                 <span className={styles.textoEtapa}>Aquisição</span>
               </div>
-              <div 
-                className={`${styles.itemLinha} ${etapaAtiva === "monetizacao" ? styles.ativo : ""}`}
+              <div
+                className={styles.itemLinha + " " + (etapaAtiva === "monetizacao" ? styles.ativo : "")}
                 onClick={() => setEtapaAtiva("monetizacao")}
               >
                 <span className={styles.pontoBolinha}></span>
@@ -141,13 +108,13 @@ export default function Metodo() {
               const Icone = etapa.icone;
               const ativa = etapaAtiva === etapa.id;
               return (
-                <button 
+                <button
                   key={etapa.id}
-                  type="button" 
-                  className={`${styles.botaoPill} ${ativa ? styles.pillAtiva : ""}`}
+                  type="button"
+                  className={styles.botaoPill + " " + (ativa ? styles.pillAtiva : "")}
                   onClick={() => setEtapaAtiva(etapa.id)}
                 >
-                  <Icone size={15} />
+                  <Icone size={16} />
                   <span>{etapa.rotulo}</span>
                 </button>
               );

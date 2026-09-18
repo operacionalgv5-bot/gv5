@@ -1,17 +1,12 @@
 .secaoTime {
-  padding: 38px 0;
+  padding: 26px 0;
   background: transparent;
   position: relative;
   z-index: 2;
   overflow-x: clip;
 }
 
-.gradeConteudo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-}
+.gradeConteudo { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 
 .colunaTextos {
   display: flex;
@@ -19,31 +14,26 @@
   align-items: center;
   text-align: center;
   gap: 10px;
-  max-width: 520px;
+  max-width: 560px;
 }
 
 .etiquetaDestaque {
   color: var(--red);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .tituloPrincipal {
-  font-size: clamp(1.18rem, 4.9vw, 1.48rem);
+  font-size: clamp(1.3rem, 5.4vw, 1.8rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.25;
   text-transform: uppercase;
-  letter-spacing: -0.2px;
 }
 
-.descricao {
-  color: var(--gray-light);
-  font-size: 0.8rem;
-  line-height: 1.5;
-}
+.descricao { color: var(--gray-light); font-size: 0.92rem; line-height: 1.55; }
 
 .blocoAcao {
   display: flex;
@@ -61,89 +51,53 @@
   gap: 6px;
   background-color: var(--white);
   color: var(--red);
-  padding: 12px 18px;
-  border-radius: 6px;
+  padding: 14px 20px;
+  border-radius: 8px;
   font-weight: 900;
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   text-transform: uppercase;
   text-decoration: none;
-  min-height: 44px;
+  min-height: 48px;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
 }
 
 .indicadorOnline {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   color: #34d399;
   font-weight: 600;
 }
 
 .pontoVerde {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: #34d399;
 }
 
-.colunaImagem {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
+.colunaImagem { display: flex; justify-content: center; width: 100%; }
 
 .molduraImagem {
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
   width: 100%;
-  max-width: 420px;
+  max-width: 460px;
 }
 
-.imagemEspecialista {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
+.imagemEspecialista { width: 100%; height: auto; object-fit: cover; display: block; }
 
 @media (min-width: 900px) {
-  .secaoTime {
-    padding: var(--espacamento-secao) 0;
-  }
-  .gradeConteudo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: center;
-  }
-  .colunaTextos {
-    align-items: flex-start;
-    text-align: left;
-    gap: 18px;
-    max-width: none;
-  }
-  .tituloPrincipal {
-    font-size: clamp(1.8rem, 4.2vw, 2.8rem);
-    line-height: 1.15;
-  }
-  .descricao {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  .blocoAcao {
-    align-items: flex-start;
-  }
-  .botaoCta {
-    width: auto;
-    padding: 16px 28px;
-    font-size: 0.95rem;
-    max-width: none;
-  }
-  .molduraImagem {
-    max-width: none;
-  }
+  .secaoTime { padding: var(--espacamento-secao) 0; }
+  .gradeConteudo { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .colunaTextos { align-items: flex-start; text-align: left; gap: 18px; max-width: none; }
+  .tituloPrincipal { font-size: clamp(1.8rem, 4.2vw, 2.8rem); line-height: 1.15; }
+  .descricao { font-size: 0.95rem; line-height: 1.6; }
+  .blocoAcao { align-items: flex-start; }
+  .botaoCta { width: auto; padding: 16px 28px; font-size: 0.95rem; max-width: none; }
+  .molduraImagem { max-width: none; }
 }

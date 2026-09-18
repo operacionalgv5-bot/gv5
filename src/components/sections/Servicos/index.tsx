@@ -17,9 +17,10 @@ const CARDS_LOOP = [...BANNER_CARDS, ...BANNER_CARDS];
 
 export default function Servicos() {
   const cabecalhoRef = useScrollAnimation<HTMLDivElement>({
-    distanciaY: 32,
-    atrasoStagger: 130,
-    duracao: 1350,
+    distanciaY: 28,
+    atrasoStagger: 120,
+    duracao: 1000,
+    triggerRatio: 0.40,
   });
 
   return (

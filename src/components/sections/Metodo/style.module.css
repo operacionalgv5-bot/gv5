@@ -1,5 +1,5 @@
 .secaoMetodo {
-  padding: var(--espacamento-secao) 0;
+  padding: 26px 0;
   background: transparent;
   position: relative;
   z-index: 2;
@@ -8,23 +8,23 @@
 
 .cabecalhoSecao {
   text-align: center;
-  margin-bottom: 18px;
-  max-width: 580px;
+  margin-bottom: 16px;
+  max-width: 620px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .etiquetaSecao {
   color: var(--red);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 1.8px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 6px;
 }
 
 .tituloSecao {
-  font-size: clamp(1.18rem, 4.9vw, 1.48rem);
+  font-size: clamp(1.35rem, 5.6vw, 1.8rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.25;
@@ -33,19 +33,15 @@
   letter-spacing: -0.2px;
 }
 
-.tituloSecao span {
-  color: var(--white);
-}
+.tituloSecao span { color: var(--white); }
 
 .subtituloSecao {
   color: var(--gray-light);
-  font-size: 0.8rem;
-  line-height: 1.45;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-.subtituloSecao strong {
-  color: var(--white);
-}
+.subtituloSecao strong { color: var(--white); }
 
 .diagramaContainer {
   display: flex;
@@ -66,67 +62,50 @@
   z-index: 2;
 }
 
-.imagemLogoCentro {
-  width: 72px;
-  height: auto;
-  object-fit: contain;
-}
+.imagemLogoCentro { width: 84px; height: auto; object-fit: contain; }
 
 .colunaLinhasEsquerda, .colunaLinhasDireita {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   flex: 1;
   z-index: 2;
 }
 
-.colunaLinhasEsquerda {
-  align-items: flex-end;
-}
-
-.colunaLinhasDireita {
-  align-items: flex-start;
-}
+.colunaLinhasEsquerda { align-items: flex-end; }
+.colunaLinhasDireita { align-items: flex-start; }
 
 .itemLinha {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   cursor: pointer;
   user-select: none;
 }
 
 .textoEtapa {
-  font-size: 0.7rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: #8fa5bf;
-  transition: color 0.3s ease;
 }
 
 .tracoConexao {
   display: inline-block;
-  width: 14px;
+  width: 18px;
   height: 2px;
   background-color: rgba(255, 255, 255, 0.12);
 }
 
 .pontoBolinha {
   display: inline-block;
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background-color: #556a82;
 }
 
-.ativo .textoEtapa {
-  color: var(--white);
-  font-weight: 900;
-}
-
-.ativo .tracoConexao {
-  background-color: var(--red);
-}
-
+.ativo .textoEtapa { color: var(--white); font-weight: 900; }
+.ativo .tracoConexao { background-color: var(--red); }
 .ativo .pontoBolinha {
   background-color: var(--red);
   box-shadow: 0 0 12px 3px rgba(212, 32, 32, 0.95);
@@ -136,30 +115,27 @@
 .gradePills {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
+  gap: 8px;
   margin-top: 6px;
 }
 
-.gradePills button:last-child {
-  grid-column: span 2;
-  justify-content: center;
-}
+.gradePills button:last-child { grid-column: span 2; justify-content: center; }
 
 .botaoPill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   background: rgba(18, 33, 56, 0.7);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 9999px;
-  padding: 8px 10px;
+  padding: 10px 12px;
   color: var(--gray-light);
-  font-size: 0.74rem;
+  font-size: 0.84rem;
   font-weight: 700;
   cursor: pointer;
-  min-height: 38px;
+  min-height: 42px;
 }
 
 .pillAtiva {
@@ -172,9 +148,9 @@
   background: linear-gradient(135deg, rgba(20, 36, 60, 0.75), rgba(12, 22, 36, 0.85));
   backdrop-filter: blur(12px);
   border: 1px solid rgba(212, 32, 32, 0.35);
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-top: 14px;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,67 +158,27 @@
   gap: 10px;
 }
 
-.iconeSeta {
-  color: var(--red-light);
-  flex-shrink: 0;
-}
+.iconeSeta { color: var(--red-light); flex-shrink: 0; }
 
 .textoDescricaoAba {
   color: var(--white);
-  font-size: 0.8rem;
-  line-height: 1.45;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 @media (min-width: 768px) {
-  .cabecalhoSecao {
-    margin-bottom: 36px;
-    max-width: none;
-  }
-  .tituloSecao {
-    font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-    line-height: 1.18;
-  }
-  .subtituloSecao {
-    font-size: 0.92rem;
-  }
-  .imagemLogoCentro {
-    width: 135px;
-  }
-  .colunaLinhasEsquerda, .colunaLinhasDireita {
-    gap: 26px;
-  }
-  .textoEtapa {
-    font-size: 0.95rem;
-  }
-  .tracoConexao {
-    width: 42px;
-  }
-  .pontoBolinha {
-    width: 10px;
-    height: 10px;
-  }
-  .gradePills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-  }
-  .gradePills button:last-child {
-    grid-column: auto;
-  }
-  .botaoPill {
-    font-size: 0.88rem;
-    padding: 10px 20px;
-  }
-  .caixaDescricao {
-    padding: 20px 26px;
-    border-radius: 14px;
-    margin-top: 28px;
-    text-align: left;
-    justify-content: flex-start;
-  }
-  .textoDescricaoAba {
-    font-size: 0.96rem;
-    line-height: 1.6;
-  }
+  .secaoMetodo { padding: var(--espacamento-secao) 0; }
+  .cabecalhoSecao { margin-bottom: 36px; max-width: none; }
+  .tituloSecao { font-size: clamp(1.8rem, 3.8vw, 2.8rem); line-height: 1.18; }
+  .subtituloSecao { font-size: 0.95rem; }
+  .imagemLogoCentro { width: 135px; }
+  .colunaLinhasEsquerda, .colunaLinhasDireita { gap: 26px; }
+  .textoEtapa { font-size: 0.95rem; }
+  .tracoConexao { width: 42px; }
+  .pontoBolinha { width: 10px; height: 10px; }
+  .gradePills { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .gradePills button:last-child { grid-column: auto; }
+  .botaoPill { font-size: 0.88rem; padding: 10px 20px; }
+  .caixaDescricao { padding: 20px 26px; border-radius: 14px; margin-top: 28px; text-align: left; justify-content: flex-start; }
+  .textoDescricaoAba { font-size: 0.96rem; line-height: 1.6; }
 }

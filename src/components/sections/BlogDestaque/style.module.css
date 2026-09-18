@@ -1,5 +1,5 @@
 .secaoBlog {
-  padding: 38px 0;
+  padding: 26px 0;
   background: transparent;
   position: relative;
   z-index: 2;
@@ -10,14 +10,14 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .etiqueta {
   color: var(--red);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 1.8px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .tituloSecao {
-  font-size: clamp(1.3rem, 5vw, 2.8rem);
+  font-size: clamp(1.4rem, 5.6vw, 2.8rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.18;
@@ -40,16 +40,17 @@
   align-items: center;
   gap: 5px;
   color: var(--red-light);
-  font-size: 0.8rem;
+  font-size: 0.86rem;
   font-weight: 800;
   text-decoration: none;
   align-self: flex-start;
 }
 
+/* MOBILE: 2 cards por linha */
 .gradePosts {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .cardDestaque {
@@ -60,12 +61,12 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  min-width: 0; /* evita estourar o grid com títulos longos */
 }
 
 .capaCard {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   background-color: var(--navy3);
   overflow: hidden;
 }
@@ -74,31 +75,38 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .corpoCard {
-  padding: 12px;
+  padding: 10px 10px 12px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 0;
 }
 
 .dataCard {
   color: var(--gray);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   margin-bottom: 6px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
 .tituloCard {
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   font-weight: 800;
   color: var(--white);
-  line-height: 1.3;
+  line-height: 1.25;
   margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
 }
 
 .tituloCard a {
@@ -108,7 +116,7 @@
 
 .resumoCard {
   color: var(--gray-light);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   line-height: 1.4;
   margin-bottom: 10px;
   display: -webkit-box;
@@ -120,40 +128,33 @@
 .linkCard {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   color: var(--red-light);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 800;
   text-decoration: none;
   margin-top: auto;
 }
 
+/* DESKTOP */
 @media (min-width: 768px) {
-  .secaoBlog {
-    padding: var(--espacamento-secao) 0;
-  }
-  .cabecalhoSecao {
-    margin-bottom: 36px;
-  }
+  .secaoBlog { padding: var(--espacamento-secao) 0; }
+  .cabecalhoSecao { margin-bottom: 36px; }
   .blocoTituloAcao {
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
   }
-  .tituloSecao {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-  }
+  .tituloSecao { font-size: clamp(1.8rem, 4vw, 2.8rem); }
   .gradePosts {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
-  .corpoCard {
-    padding: 16px;
-  }
-  .tituloCard {
-    font-size: 1.05rem;
-  }
-  .resumoCard {
-    font-size: 0.84rem;
-  }
+  .cardDestaque { border-radius: 14px; }
+  .capaCard { aspect-ratio: 16 / 9; }
+  .corpoCard { padding: 16px; }
+  .dataCard { font-size: 0.8rem; gap: 6px; margin-bottom: 8px; }
+  .tituloCard { font-size: 1.05rem; line-height: 1.3; margin-bottom: 8px; -webkit-line-clamp: 2; }
+  .resumoCard { font-size: 0.84rem; line-height: 1.45; -webkit-line-clamp: 3; }
+  .linkCard { font-size: 0.86rem; gap: 5px; }
 }

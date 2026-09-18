@@ -6,9 +6,10 @@ import styles from "./style.module.css";
 
 export default function TimeExclusivo() {
   const gradeRef = useScrollAnimation<HTMLDivElement>({
-    distanciaY: 42,
-    atrasoStagger: 150,
-    duracao: 1400,
+    distanciaY: 34,
+    atrasoStagger: 140,
+    duracao: 1100,
+    triggerRatio: 0.40,
   });
 
   return (

@@ -29,17 +29,17 @@
 
 .descricaoInstitucional {
   color: var(--gray-light);
-  font-size: 0.78rem;
-  line-height: 1.4;
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 .iconeInstagram {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
   background-color: rgba(18, 33, 56, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--white);
@@ -54,7 +54,7 @@
 
 .tituloColuna {
   color: var(--white);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   font-weight: 800;
   margin-bottom: 2px;
 }
@@ -62,8 +62,8 @@
 .linkItem {
   color: var(--gray);
   text-decoration: none;
-  font-size: 0.78rem;
-  padding: 2px 0;
+  font-size: 0.82rem;
+  padding: 3px 0;
 }
 
 .colunaContato {
@@ -75,14 +75,14 @@
 
 .textoContato {
   color: var(--gray-light);
-  font-size: 0.78rem;
-  line-height: 1.4;
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 .linkWhatsapp {
   color: var(--white);
   text-decoration: none;
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   font-weight: 800;
   border-bottom: 2px solid var(--red);
   padding-bottom: 2px;
@@ -125,9 +125,9 @@
 
 .textoCopyright {
   color: var(--gray);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   text-align: center;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .cnpjDestaque {
@@ -135,12 +135,13 @@
   font-weight: 700;
 }
 
+/* BOTÃO FLUTUANTE WHATSAPP — MOBILE MAIOR */
 .botaoWhatsappFlutuante {
   position: fixed;
-  bottom: 14px;
-  right: 10px;
-  width: 48px;
-  height: 48px;
+  bottom: 18px;
+  right: 14px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: linear-gradient(135deg, #2fe675, #25d366);
   color: var(--white);
@@ -148,8 +149,13 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 0 16px rgba(37, 211, 102, 0.6);
+  box-shadow: 0 0 22px rgba(37, 211, 102, 0.75), 0 6px 20px rgba(0, 0, 0, 0.45);
   z-index: 999;
+}
+
+.botaoWhatsappFlutuante svg {
+  width: 34px;
+  height: 34px;
 }
 
 @media (min-width: 768px) {
@@ -175,7 +181,6 @@
   .iconeInstagram {
     width: 38px;
     height: 38px;
-    border-radius: 8px;
   }
   .colunaLinks {
     gap: 10px;
@@ -214,6 +219,9 @@
     right: 20px;
     width: 58px;
     height: 58px;
-    box-shadow: 0 0 20px rgba(37, 211, 102, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  .botaoWhatsappFlutuante svg {
+    width: 26px;
+    height: 26px;
   }
 }

@@ -1,5 +1,5 @@
 .secaoHero {
-  padding-top: var(--espacamento-secao);
+  padding-top: 30px;
   background: transparent;
   position: relative;
   z-index: 2;
@@ -9,7 +9,7 @@
 .gradeConteudo {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .colunaTexto {
@@ -19,19 +19,11 @@
   z-index: 3;
 }
 
-.blocoLogo {
-  display: flex;
-  align-items: center;
-}
-
-.iconeLogo {
-  width: 36px;
-  height: auto;
-  object-fit: contain;
-}
+.blocoLogo { display: flex; align-items: center; }
+.iconeLogo { width: 40px; height: auto; object-fit: contain; }
 
 .tituloAutoridade {
-  font-size: clamp(1.35rem, 5.6vw, 3.2rem);
+  font-size: clamp(1.5rem, 6vw, 3.2rem);
   font-weight: 900;
   line-height: 1.16;
   text-transform: uppercase;
@@ -39,15 +31,12 @@
   letter-spacing: -0.3px;
 }
 
-.destaqueVermelho {
-  color: var(--red);
-  display: inline;
-}
+.destaqueVermelho { color: var(--red); display: inline; }
 
 .subtitulo {
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   color: var(--gray-light);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .botaoAcao {
@@ -57,15 +46,15 @@
   gap: 6px;
   background-color: var(--red);
   color: var(--white);
-  padding: 12px 16px;
+  padding: 14px 16px;
   border-radius: 6px;
   font-weight: 800;
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.86rem;
   letter-spacing: 0.4px;
   width: 100%;
-  min-height: 44px;
+  min-height: 48px;
   box-shadow: 0 6px 18px rgba(212, 32, 32, 0.35);
 }
 
@@ -140,7 +129,7 @@
 
 .itemMetrica {
   font-weight: 900;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   display: inline-flex;
@@ -164,49 +153,16 @@
 }
 
 @media (min-width: 900px) {
-  .gradeConteudo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: center;
-  }
-  .colunaTexto {
-    gap: 20px;
-  }
-  .iconeLogo {
-    width: 50px;
-  }
-  .tituloAutoridade {
-    font-size: clamp(2rem, 4.4vw, 3.4rem);
-  }
-  .subtitulo {
-    font-size: clamp(0.98rem, 1.6vw, 1.15rem);
-    line-height: 1.65;
-  }
-  .botaoAcao {
-    width: auto;
-    align-self: flex-start;
-    padding: 16px 28px;
-    font-size: 0.92rem;
-  }
-  .imagemHero {
-    max-width: 740px;
-    transform: scale(1.08);
-  }
-  .areaFaixasCruzadas {
-    height: 100px;
-    margin-top: 35px;
-  }
-  .faixaBranca {
-    top: 36px;
-    padding: 10px 0;
-  }
-  .faixaVermelha {
-    top: 14px;
-    padding: 12px 0;
-  }
-  .itemMetrica {
-    font-size: 0.82rem;
-    gap: 12px;
-  }
+  .secaoHero { padding-top: var(--espacamento-secao); }
+  .gradeConteudo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
+  .colunaTexto { gap: 20px; }
+  .iconeLogo { width: 50px; }
+  .tituloAutoridade { font-size: clamp(2rem, 4.4vw, 3.4rem); }
+  .subtitulo { font-size: clamp(0.98rem, 1.6vw, 1.15rem); line-height: 1.65; }
+  .botaoAcao { width: auto; align-self: flex-start; padding: 16px 28px; font-size: 0.92rem; }
+  .imagemHero { max-width: 740px; transform: scale(1.08); }
+  .areaFaixasCruzadas { height: 100px; margin-top: 35px; }
+  .faixaBranca { top: 36px; padding: 10px 0; }
+  .faixaVermelha { top: 14px; padding: 12px 0; }
+  .itemMetrica { font-size: 0.82rem; gap: 12px; }
 }
